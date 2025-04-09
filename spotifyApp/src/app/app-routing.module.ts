@@ -5,7 +5,7 @@ import { HomePageComponent } from '@modules/home/pages/home-page/home-page.compo
 //capaces de destruir componentes
 const routes: Routes = [
   {
-     path: '',// localhost:4200/
+     path: 'auth',// localhost:4200/
     loadChildren:() => import('./modules/auth/auth.module').then(m => m.AuthModule)
 
   },{
