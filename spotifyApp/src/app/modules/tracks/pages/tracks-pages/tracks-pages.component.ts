@@ -11,13 +11,33 @@ export class TracksPagesComponent implements OnInit {
   tracksTrending: Array<TrackModel> = [
   ]
   tracksRandom: Array<TrackModel> = []
-  listObserver$: Array<Subscription>=[]
-  constructor(private tracksService: TrackService) { 
+  listObserver$: Array<Subscription> = []
+  constructor(private trackService: TrackService) {
 
   }
   ngOnInit(): void {
     // const {data}: any=(dataRaw as any).default
     // this.mockTrackList=data
-  }
+    const observer1$ = this.trackService.dataTracksTrending$
+    .subscribe(response => {
+      this.tracksTrending=response
+      this.tracksRandom=response
+      console.log("canciones trending -->", response);
+    })
 
+
+    const observer2$ = this.trackService.dataTracksRandom$
+    .subscribe(response => {
+      this.tracksRandom=[... this.tracksRandom, ...response]
+      console.log("canciones random -->", response);
+    })
+    this.listObserver$ = [observer1$, observer2$]
+  
+  }
+  ngOnDestroy(): void {
+   
+    this.listObserver$.forEach(u=> u.unsubscribe())
+  }
 }
+
+
