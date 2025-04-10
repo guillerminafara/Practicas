@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: '**',//sin ruta
-    redirectTo: '/home'
+    redirectTo: '/tracks'
   }
 ];
 

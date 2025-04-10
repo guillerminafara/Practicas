@@ -32,6 +32,9 @@ export class LoginPagesComponent implements OnInit {
   sendLogin(): void {
     const { email, password } = this.formLogin.value
     this.asAuthService.sendCredentials(email, password)
+    .subscribe(responseOk=>{
+      
+    })
   }
 
 }

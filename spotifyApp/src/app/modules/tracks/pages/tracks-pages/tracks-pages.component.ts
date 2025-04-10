@@ -16,27 +16,41 @@ export class TracksPagesComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    // const {data}: any=(dataRaw as any).default
-    // this.mockTrackList=data
-    const observer1$ = this.trackService.dataTracksTrending$
-    .subscribe(response => {
-      this.tracksTrending=response
-      this.tracksRandom=response
-      console.log("canciones trending -->", response);
-    })
+    this.loadDataAll()
+    // this.loadDataRandom()
 
+  }
+  async loadDataAll(): Promise<any> {
+    // this.trackService.getAllTracks$()
+    //   .subscribe((response: TrackModel[] )=> {
+    //     console.log("----->>", response)
+    //     this.tracksTrending= response
+    //   }
+    //   )
 
-    const observer2$ = this.trackService.dataTracksRandom$
-    .subscribe(response => {
-      this.tracksRandom=[... this.tracksRandom, ...response]
-      console.log("canciones random -->", response);
-    })
-    this.listObserver$ = [observer1$, observer2$]
-  
+    this.tracksTrending= await this.trackService.getAllTracks$()
+      .toPromise()
+    this.tracksRandom = await this.trackService.getAllTracks$()
+      .toPromise()
+    // .then(res => { })
+    // .catch(err => {
+    //   console.log('error en conexion');
+    // })
+
+  }
+  loadDataRandom():void {
+    // this.trackService.getAllRandom$()
+    //   .subscribe((response: TrackModel[]) => {
+    //     console.log("----->>", response)
+    //     this.tracksRandom = response
+    //   }, err => {
+    //alert('error de conexiones')
+    //     console.log('error en conexion');
+    //   }
+    //   )
   }
   ngOnDestroy(): void {
-   
-    this.listObserver$.forEach(u=> u.unsubscribe())
+
   }
 }
 
