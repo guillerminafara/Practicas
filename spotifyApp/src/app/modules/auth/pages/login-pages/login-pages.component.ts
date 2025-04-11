@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '@modules/auth/services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -9,16 +11,16 @@ import { AuthService } from '@modules/auth/services/auth.service';
   styleUrls: ['./login-pages.component.css']
 })
 export class LoginPagesComponent implements OnInit {
-  formLogin: FormGroup = new FormGroup({
+  formLogin: FormGroup = new FormGroup({})
+  errorSession: boolean= false
+  constructor(private authService: AuthService,
+     private cookie:CookieService,
+    private router:Router) {}
 
-
-  })
-  constructor(private asAuthService: AuthService) {
-
-  }
   ngOnInit(): void {
     this.formLogin = new FormGroup({
-      email: new FormControl('', [Validators.required,
+      email: new FormControl('', [
+        Validators.required,
       Validators.email
       ]),
       password: new FormControl('', [
@@ -31,9 +33,15 @@ export class LoginPagesComponent implements OnInit {
 
   sendLogin(): void {
     const { email, password } = this.formLogin.value
-    this.asAuthService.sendCredentials(email, password)
-    .subscribe(responseOk=>{
-      
+    this.authService.sendCredentials(email, password)
+    .subscribe(responseOk => {
+      console.log("sesión iniciada correctamente");
+      const {tokenSession, data}= responseOk
+      this.cookie.set('token', tokenSession, 4, '/')
+      this.router.navigate(['/','tracks'])
+    }, err => {
+      this.errorSession= true
+      console.log("Mail o password inválido");
     })
   }
 

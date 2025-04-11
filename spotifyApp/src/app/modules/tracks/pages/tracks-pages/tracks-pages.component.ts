@@ -30,7 +30,7 @@ export class TracksPagesComponent implements OnInit {
 
     this.tracksTrending= await this.trackService.getAllTracks$()
       .toPromise()
-    this.tracksRandom = await this.trackService.getAllTracks$()
+     this.tracksRandom = await this.trackService.getAllRandom$()
       .toPromise()
     // .then(res => { })
     // .catch(err => {
