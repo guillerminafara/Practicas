@@ -8,7 +8,7 @@ import { TrackService } from '@modules/tracks/services/track.service';
   styleUrls: ['./favorites-pages.component.css']
 })
 export class FavoritesPagesComponent implements OnInit {
-  // tracksTrending: Array<TrackModel> = []
+   tracksTrending: Array<TrackModel> = []
 
   // constructor(private trackService: TrackService) {
 

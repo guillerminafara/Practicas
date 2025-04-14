@@ -21,7 +21,7 @@ export class SideBarComponent implements OnInit{
       {
         name: 'Home',
         icon: 'uil uil-estate',
-        router: ['/','auth']
+        router: ['/','tracks']
       },
       {
         name: 'Buscar',
