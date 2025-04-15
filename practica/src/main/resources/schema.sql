@@ -1,0 +1,5 @@
+create table person(
+id INTEGER PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(100) NOT NULL,
+role VARCHAR(25)
+);
