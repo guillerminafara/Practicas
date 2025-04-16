@@ -1,0 +1,15 @@
+Toda la lógica de negocio, operaciones y demás debe estar implementada en los servicios. Los controladores simplemente invocan servicios y transforman ciertos datos.
+
+La capa de servicio puede invocar a otros servicios en sus operaciones, pero nunca debe invocar a un controlador.
+
+La forma de inyectar y utilizar componentes manejados por Spring Boot es mediante la anotación @Autowired.
+
+ el acceso a datos se debe hacer siempre a través de un Repository, así que vamos a implementar uno. En esta capa, al igual que pasaba con los services, es recomendable utilizar el patrón fachada, para poder sustituir implementaciones sin afectar al código.
+
+Los datos que vienen y van al cliente, deberían ser en la mayoría de los casos datos en formato json
+
+Al entrar en un Controller esos datos json se transforman en un DTO. Al salir del Controller hacia el cliente, esos DTOs se transforman en formato json. Estas conversiones son automáticas, las hace Springboot (en realidad las hace la librería de jackson codehaus)
+
+Cuando un Controller ejecuta una llamada a un Service, generalmente le pasa sus datos en DTO, y el Service se encarga de transformar esto a una Entity. A la inversa, cuando un Service responde a un Controller, él responde con una Entity y el Controller ya se encargará de transformarlo a DTO.
+
+Los Repository JAMÁS deben llamar a otros Repository ni Service

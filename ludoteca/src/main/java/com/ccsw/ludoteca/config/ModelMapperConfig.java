@@ -1,8 +1,10 @@
-package com.ccsw.tutorial.config;
+package com.ccsw.ludoteca.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class ModelMapperConfig {
     @Bean
     public ModelMapper getModelMapper() {
