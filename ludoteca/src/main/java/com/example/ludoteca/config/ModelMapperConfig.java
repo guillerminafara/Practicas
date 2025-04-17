@@ -1,4 +1,4 @@
-package com.ccsw.ludoteca.config;
+package com.example.ludoteca.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

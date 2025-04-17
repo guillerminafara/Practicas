@@ -2,10 +2,13 @@ package com.example.ludoteca.category;
 
 import com.example.ludoteca.category.model.Category;
 import com.example.ludoteca.category.model.CategoryDto;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
+@Transactional
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired

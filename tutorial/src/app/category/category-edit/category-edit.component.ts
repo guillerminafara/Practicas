@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Category } from '../model/Category';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA,  MatDialogRef } from '@angular/material/dialog';
 import { CategoryService } from '../category.service';
 
 @Component({
@@ -19,9 +19,9 @@ export class CategoryEditComponent implements OnInit {
   }
   ngOnInit(): void {
     if (this.data.category != null) {
-      this.category = this.data.category;
-    } else {
       this.category = Object.assign({}, this.data.category);
+    } else {
+      this.category = new Category();
     }
 
   }

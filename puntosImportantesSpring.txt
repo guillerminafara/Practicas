@@ -1,3 +1,7 @@
+Controller → Maneja las peticiones de entrada del cliente y realiza transformaciones. No ejecuta directamente lógica de negocio, para eso utiliza llamadas a la siguiente capa.
+Service → Ejecuta la lógica de negocio en sus métodos o llamando a otros objetos de la misma capa. No ejecuta directamente accesos a datos, para eso utiliza la siguiente capa.
+Repository → Realiza los accesos a datos de lectura y escritura. NUNCA debe llamar a otros objetos de la misma capa ni de capas anteriores.
+
 Toda la lógica de negocio, operaciones y demás debe estar implementada en los servicios. Los controladores simplemente invocan servicios y transforman ciertos datos.
 
 La capa de servicio puede invocar a otros servicios en sus operaciones, pero nunca debe invocar a un controlador.
@@ -12,4 +16,18 @@ Al entrar en un Controller esos datos json se transforman en un DTO. Al salir de
 
 Cuando un Controller ejecuta una llamada a un Service, generalmente le pasa sus datos en DTO, y el Service se encarga de transformar esto a una Entity. A la inversa, cuando un Service responde a un Controller, él responde con una Entity y el Controller ya se encargará de transformarlo a DTO.
 
-Los Repository JAMÁS deben llamar a otros Repository ni Service
+Los Repository JAMÁS deben llamar a otros Repository ni Service.NUNCA debe llamar a otros objetos de la misma capa ni de capas anteriores
+
+
+
+Paginación en Springframework
+
+Cuando utilicemos paginación en Springframework, debemos recordar que ya vienen implementados algunos objetos que podemos utilizar y que nos facilitan la vida. Es el caso de Pageable y Page.
+
+El objeto Pageable no es más que una interface que le permite a Spring JPA saber que página se quiere buscar, cual es el tamaño de página y cuales son las propiedades de ordenación que se debe lanzar en la consulta.
+El objeto PageRequest es una utilidad que permite crear objetos de tipo Pageable de forma sencilla. Se utiliza mucho para codificación de test.
+El objeto Page no es más que un contenedor que engloba la información básica de la página que se está consultando (número de página, tamaño de página, número total de resultados) y el conjunto de datos de la BBDD que contiene esa página una vez han sido buscados y ordenados.
+
+CrudRepository<T, ID> ya que tiene muchos métodos implementados de base que nos pueden servir, como el delete o el save.
+
+Fíjate también que cuando queremos copiar más de un dato de una clase a otra, tenemos una utilidad llamada BeanUtils que nos permite realizar esa copia (siempre que las propiedades de ambas clases se llamen igual). Además, en nuestro ejemplo hemos ignorado el 'id' para que no nos copie un null a la clase destino.

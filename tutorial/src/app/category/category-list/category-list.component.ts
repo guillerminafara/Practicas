@@ -5,7 +5,7 @@ import { CategoryService } from '../category.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
 import { DialogConfirmationComponent } from 'src/app/core/dialog-confirmation/dialog-confirmation.component';
-import { Title } from '@angular/platform-browser';
+
 
 
 @Component({
@@ -42,7 +42,7 @@ export class CategoryListComponent implements OnInit {
   }
   deleteCategory(category:Category){
     const dialogRef= this.dialog.open(DialogConfirmationComponent,{
-      data:{Title:"Eliminar Categoría ", 
+      data:{title:"Eliminar Categoría ", 
         description: "Atención! si borra la categoria se perderán sus datos.<br> ¿Desea eliminar la categoría?"}
     });
     dialogRef.afterClosed().subscribe(
@@ -50,7 +50,7 @@ export class CategoryListComponent implements OnInit {
       if(result){
         this.categoryService.deleteCategory(category.id).subscribe(result=>{
           this.ngOnInit();
-        })
+        });
       }
     });
   }

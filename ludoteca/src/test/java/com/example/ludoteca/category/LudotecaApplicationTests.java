@@ -1,4 +1,4 @@
-package com.example.ludoteca;
+package com.example.ludoteca.category;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
