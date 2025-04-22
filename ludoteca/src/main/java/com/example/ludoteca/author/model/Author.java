@@ -17,7 +17,7 @@ public class Author {
     private String nationality;
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -25,7 +25,7 @@ public class Author {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -33,7 +33,7 @@ public class Author {
     }
 
     public String getNationality() {
-        return nationality;
+        return this.nationality;
     }
 
     public void setNationality(String nationality) {

@@ -7,10 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from "./core/core.module";
 import { CategoryModule } from './category/category.module';
 import { AuthorModule } from './author/author.module';
+import { GameModule } from './game/game.module';
+import { CustomerModule} from './customer/customer.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -18,7 +21,10 @@ import { AuthorModule } from './author/author.module';
     BrowserAnimationsModule,
     CoreModule,
     CategoryModule,
-    AuthorModule
+    AuthorModule,
+    GameModule,
+    CustomerModule,
+    HttpClientModule
 ],
   providers: [],
   bootstrap: [AppComponent]

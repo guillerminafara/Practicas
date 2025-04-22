@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.domain.*;
 
 public class PageableRequest implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     private int pageNumber;
@@ -19,12 +20,14 @@ public class PageableRequest implements Serializable {
 
         sort = new ArrayList<>();
     }
+
     public PageableRequest(int pageNumber, int pageSize) {
 
         this();
         this.pageNumber = pageNumber;
         this.pageSize = pageSize;
     }
+
     public PageableRequest(int pageNumber, int pageSize, List<SortRequest> sort) {
 
         this();
@@ -32,7 +35,6 @@ public class PageableRequest implements Serializable {
         this.pageSize = pageSize;
         this.sort = sort;
     }
-
 
     public int getPageNumber() {
         return pageNumber;
@@ -61,15 +63,11 @@ public class PageableRequest implements Serializable {
     @JsonIgnore
     public Pageable getPageable() {
 
-        return PageRequest.of(
-                this.pageNumber,
-                this.pageSize,
-                Sort.by(sort.stream()
-                        .map(e -> new Sort.Order(e.getDirection(), e.getProperty()))
-                        .collect(Collectors.toList())));
+        return PageRequest.of(this.pageNumber, this.pageSize, Sort.by(sort.stream().map(e -> new Sort.Order(e.getDirection(), e.getProperty())).collect(Collectors.toList())));
     }
 
     public static class SortRequest implements Serializable {
+
         private static final long serialVersionUID = 1L;
 
         private String property;
@@ -92,7 +90,6 @@ public class PageableRequest implements Serializable {
             this.direction = direction;
         }
     }
-
 }
 
 
