@@ -1,16 +1,16 @@
 <div class="container">
-    <h1>Crear categoría</h1>
-    <h1>Modificar categoría</h1>
+    <h1 *ngIf="customer.id== null">Crear cliente</h1>
+    <h1 *ngIf="customer.id==null">Modificar cliente</h1>
 
     <form>
         <mat-form-field>
             <mat-label>Identificador</mat-label>
-            <input type="text" matInput placeholder="Identificador" name="id" disabled>
+            <input type="text" matInput placeholder="Identificador" [(ngModel)]="customer.id" name="id" disabled>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Nombre</mat-label>
-            <input type="text" matInput placeholder="Nombre del cliente" name="name" required>
+            <input type="text" matInput placeholder="Nombre del cliente" [(ngModel)]="customer.name"name="name" required>
             <mat-error>El nombre no puede estar vacío</mat-error>
         </mat-form-field>
     </form>

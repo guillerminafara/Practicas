@@ -15,3 +15,13 @@ INSERT INTO game(title, age, category_id, author_id) VALUES ('1920: Wall Street'
 INSERT INTO game(title, age, category_id, author_id) VALUES ('Barrage', '14', 1, 3);
 INSERT INTO game(title, age, category_id, author_id) VALUES ('Los viajes de Marco Polo', '12', 1, 3);
 INSERT INTO game(title, age, category_id, author_id) VALUES ('Azul', '8', 3, 5);
+
+INSERT INTO customer(name) VALUES('Paquito');
+INSERT INTO customer(name) VALUES('Tito');
+INSERT INTO customer(name) VALUES('Tuqui');
+INSERT INTO customer(name) VALUES('Rolando');
+INSERT INTO customer(name) VALUES('Carlos');
+INSERT INTO customer(name) VALUES('Pepe');
+INSERT INTO customer(name) VALUES('Ernesto');
+INSERT INTO customer(name) VALUES('María');
+INSERT INTO customer(name) VALUES('Carmen');

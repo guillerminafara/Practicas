@@ -10,16 +10,18 @@ import { CUSTOMER_DATA } from './model/mock-customer';
 export class CustomerService {
 
   constructor(
-    // private http:HttpClient
+    private http:HttpClient
   ) { }
 
   getCustomer(): Observable<Customer[]> {
-    return of(CUSTOMER_DATA);
+    return this.http.get<Customer[]>('http://localhost:8080/customer');
   }
   saveCustomer(customer: Customer):Observable<Customer>{
-    return of(null);
+    let url='http://localhost:8080/customer';
+    if(customer.id!= null) url+= '/'+ customer.id;
+    return this.http.put<Customer>(url, customer);
   }
   deleteCustomer(idCustomer:number):Observable<any>{
-    return of(null);
+    return this.http.delete('http://localhost:8080/customer/'+idCustomer);
   }
 }

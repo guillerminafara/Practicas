@@ -20,7 +20,7 @@ export class CustomerEditComponent implements OnInit {
   }
   ngOnInit(): void {
     if (this.data.customer != null) {
-      this.customer = this.data.customer;
+      this.customer = Object.assign({}, this.data.customer);
     }
     else {
       this.customer = new Customer();
