@@ -25,3 +25,9 @@ INSERT INTO customer(name) VALUES('Pepe');
 INSERT INTO customer(name) VALUES('Ernesto');
 INSERT INTO customer(name) VALUES('María');
 INSERT INTO customer(name) VALUES('Carmen');
+
+
+INSERT INTO rent(customer_name, game_name, initial_date, final_date, enable)VALUES(1, 5, '2025-04-23', '2025-04-27',1);
+INSERT INTO rent(customer_name, game_name, initial_date, final_date, enable)VALUES(4, 1, '2025-04-20', '2025-04-27',1);
+INSERT INTO rent(customer_name, game_name, initial_date, final_date, enable)VALUES(8, 4, '2025-04-21', '2025-04-30',1);
+

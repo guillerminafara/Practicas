@@ -14,11 +14,12 @@ import { DialogConfirmationComponent } from 'src/app/core/dialog-confirmation/di
   styleUrls: ['./author-list.component.scss']
 })
 export class AuthorListComponent implements OnInit {
+  dataSource = new MatTableDataSource<Author>();
   pageNumber: number = 0;
   pageSize: number = 5;
   totalElements: number = 0;
 
-  dataSource = new MatTableDataSource<Author>();
+
   displayColumns: string[] = ['id', 'name', 'nationality', 'action'];
   constructor(private authorService: AuthorService,
     public dialog: MatDialog,

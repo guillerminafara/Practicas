@@ -10,6 +10,7 @@ import { AuthorModule } from './author/author.module';
 import { GameModule } from './game/game.module';
 import { CustomerModule} from './customer/customer.module';
 import { HttpClientModule } from '@angular/common/http';
+import { RentModule } from './rent/rent.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     AuthorModule,
     GameModule,
     CustomerModule,
-    HttpClientModule
+    HttpClientModule,
+    RentModule
 ],
   providers: [],
   bootstrap: [AppComponent]

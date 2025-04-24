@@ -1,6 +1,6 @@
 <div class="container">
     <h1 *ngIf="customer.id== null">Crear cliente</h1>
-    <h1 *ngIf="customer.id==null">Modificar cliente</h1>
+    <h1 *ngIf="customer.id!=null">Modificar cliente</h1>
 
     <form>
         <mat-form-field>
@@ -12,7 +12,9 @@
             <mat-label>Nombre</mat-label>
             <input type="text" matInput placeholder="Nombre del cliente" [(ngModel)]="customer.name"name="name" required>
             <mat-error>El nombre no puede estar vacío</mat-error>
+           
         </mat-form-field>
+        <p *ngIf="errorB" class="errorRepeat"> {{errorText}}</p>
     </form>
 
     <div class="buttons">

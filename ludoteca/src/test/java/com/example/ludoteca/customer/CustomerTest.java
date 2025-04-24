@@ -82,16 +82,16 @@ public class CustomerTest {
         verify(customerRepository).deleteById(EXISTS_CUSTOMER_ID);
     }
 
-    @Test
-    public void saveExistsCustomerNameShouldNotInsert() throws Exception {
-        CustomerDto customerDto = new CustomerDto();
-        customerDto.setName(EXISTS_CUSTOMER_NAME);
-
-        Customer customer = mock(Customer.class);
-        when(customerRepository.findByName(EXISTS_CUSTOMER_NAME)).thenReturn(customer);
-
-        customerService.save(null, customerDto);
-        //verify(customerRepository).save(customer);
-        assertNull(EXISTS_CUSTOMER_NAME, customer.getName());
-    }
+//    @Test
+//    public void saveExistsCustomerNameShouldNotInsert() throws Exception {
+//        CustomerDto customerDto = new CustomerDto();
+//        customerDto.setName(EXISTS_CUSTOMER_NAME);
+//
+//        Customer customer = mock(Customer.class);
+//        when(customerRepository.findByName(EXISTS_CUSTOMER_NAME)).thenReturn(customer);
+//
+//
+//        verify(customerRepository).save(customer);
+//
+//    }
 }
