@@ -14,12 +14,20 @@ import { Rent } from '../model/rent';
   styleUrls: ['./rent-list.component.scss']
 })
 export class RentListComponent implements OnInit {
-  
+
   dataSource = new MatTableDataSource<Rent>();
   pageNumber: number = 0;
   pageSize: number = 5;
   totalElements: number = 0;
-  displayedColumns: string[] = ['id', 'name-game', 'name-client','initial-date', 'end-date', 'action'];
+  displayedColumns: string[] = ['id', 'name-game', 'name-client', 'initial-date', 'end-date', 'action'];
+  // icon: any;
+  items = [{
+    value: 'search', icon: 'home', label: 'Título'
+  }]
+  dateSelected: Date = new Date();
+  selected: any;
+
+
   constructor(
     private rentService: RentService
   ) {
@@ -41,10 +49,10 @@ export class RentListComponent implements OnInit {
       pageable.pageSize = event.pageSize
       pageable.pageNumber = event.pageIndex;
     }
-    // else{
-    //   pageable.pageSize=5;
-    //   pageable.pageNumber=event.pageIndex;
-    // }
+    else {
+      pageable.pageSize = 5;
+      pageable.pageNumber = 0;
+    }
 
     this.rentService.getRents(pageable).subscribe(data => {
       this.dataSource.data = data.content;

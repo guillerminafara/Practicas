@@ -10,7 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -29,6 +31,11 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     MatIconModule,
     HttpClientModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatButtonModule
   ]
 })
 export class RentModule { }

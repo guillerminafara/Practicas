@@ -15,8 +15,8 @@ export class RentService {
   constructor(private http: HttpClient) { }
 
   getRents(pageable: Pageable): Observable<RentPage> {
-    // return this.http.post<RentPage>('http://localhost:8080/rent', { pageable: pageable });
-    return of(RENT_DATA);
+     return this.http.post<RentPage>('http://localhost:8080/rent', { pageable: pageable });
+    // return of(RENT_DATA);
   }
 
   // getAllRents(): Observable<Rent[]>{

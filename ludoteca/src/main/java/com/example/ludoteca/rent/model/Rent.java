@@ -1,10 +1,12 @@
 package com.example.ludoteca.rent.model;
 
+
 import com.example.ludoteca.customer.model.Customer;
 import com.example.ludoteca.game.model.Game;
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name="Rent")
@@ -15,16 +17,16 @@ public class Rent {
     private Long id;
 
     @Column(name="customer_name", nullable = false)
-    private Long nameCustomer;
+    private Customer customer;
 
     @Column(name="game_name", nullable = false)
-    private Long nameGame;
+    private Game game;
 
     @Column(name="initial_date", nullable = false)
-    private Date initialDate;
+    private LocalDate startDate;
 
     @Column(name="final_date", nullable = false)
-    private Date finalDate;
+    private LocalDate endDate;
 
     @Column(name="enable", nullable = false)
     private Boolean enable;
