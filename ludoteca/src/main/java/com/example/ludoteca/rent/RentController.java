@@ -30,11 +30,13 @@ public class RentController {
     ModelMapper mapper;
 
     @Operation(summary = "Find", description = "Method that return a list of all Rents")
-    @RequestMapping(path = "", method = RequestMethod.GET)
+    @RequestMapping(path = "/", method = RequestMethod.GET)
     public List<RentDto>findAll(){
        List<Rent> rents= rentService.findAll();
        return rents.stream().map(e -> mapper.map(e, RentDto.class)).collect(Collectors.toList());
     }
+
+
 
 //    @Operation(summary = "Find", description = "Method that return a list of Rents")
 //    @RequestMapping(path = "", method = RequestMethod.GET)
@@ -50,8 +52,14 @@ public class RentController {
 
     @RequestMapping(path = "", method = RequestMethod.POST)
     @Operation(summary = "Find Page", description = "Method that return a page of Rents")
-    public Page<RentDto> findPage(@RequestBody RentSearchDto dto) {
-        Page<Rent> page = this.rentService.findPage(dto);
-        return new PageImpl<>(page.getContent().stream().map(e -> mapper.map(e, RentDto.class)).collect(Collectors.toList()), page.getPageable(), page.getTotalElements());
+    public Page<RentDto> find(@RequestBody RentSearchDto dto,
+                                  @RequestParam(name="id", required = false) Long id) {
+
+//        System.out.printf("------------------------------> %s",dto.getPageable().getPageable().toString());
+        Page<Rent> page = this.rentService.findPage(dto,  id);
+
+        return new PageImpl<>(page.getContent()
+                .stream().map(e -> mapper.map(e, RentDto.class))
+                .collect(Collectors.toList()), page.getPageable(), page.getTotalElements());
     }
 }

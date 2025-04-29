@@ -1,4 +1,5 @@
 package com.example.ludoteca.common.pagination;
+import java.io.Serial;
 import java.util.List;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class PageableRequest implements Serializable {
     }
 
     public static class SortRequest implements Serializable {
-
+    @Serial
         private static final long serialVersionUID = 1L;
 
         private String property;

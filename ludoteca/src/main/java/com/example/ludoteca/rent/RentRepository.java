@@ -1,11 +1,24 @@
 package com.example.ludoteca.rent;
 
+import com.example.ludoteca.game.model.Game;
 import com.example.ludoteca.rent.model.Rent;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface RentRepository extends CrudRepository<Rent, Long> {
-//    List<Rent> find(Specification<Rent>spec);
+public interface RentRepository extends CrudRepository<Rent, Long>, JpaSpecificationExecutor<Rent>{
+ // Page<Rent> find(Specification<Rent> spec,Pageable pageable);
+
+
+//  @EntityGraph(attributePaths = {"customer"})
+//  List<Rent> findByIdCustomer(Specification<Rent> spec);
+//
+//  @EntityGraph(attributePaths = {"game"})
+//  List<Rent> findByIdGame(Specification<Rent>spec);
 }
