@@ -17,26 +17,36 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
-@Tag(name = "rent", description = "API of Rent")
+
+@Tag(name = "Rent", description = "API of Rent")
 @RequestMapping(value = "/rent")
 @RestController
 @CrossOrigin(origins = "*")
-public class RentController  {
+public class RentController {
     @Autowired
     private RentService rentService;
 
     @Autowired
     ModelMapper mapper;
 
-
-    @Operation(summary = "Find", description = "Method that return a list of Rents")
+    @Operation(summary = "Find", description = "Method that return a list of all Rents")
     @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<RentDto> findAll() {
-
-        List<Rent> rents = this.rentService.findAll();
-
-        return rents.stream().map(e -> mapper.map(e, RentDto.class)).collect(Collectors.toList());
+    public List<RentDto>findAll(){
+       List<Rent> rents= rentService.findAll();
+       return rents.stream().map(e -> mapper.map(e, RentDto.class)).collect(Collectors.toList());
     }
+
+//    @Operation(summary = "Find", description = "Method that return a list of Rents")
+//    @RequestMapping(path = "", method = RequestMethod.GET)
+//    public List<RentDto> find(@RequestParam(value = "customer_id", required = false) Long customer_id,
+//                                 @RequestParam(value = "game_id", required = false) Long game_id) {
+//
+//        List<Rent> rents = rentService.find(customer_id, game_id);
+//
+//        return rents.stream().map(e -> mapper.map(e, RentDto.class)).collect(Collectors.toList());
+//
+//
+//    }
 
     @RequestMapping(path = "", method = RequestMethod.POST)
     @Operation(summary = "Find Page", description = "Method that return a page of Rents")

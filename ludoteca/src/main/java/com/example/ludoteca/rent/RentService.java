@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface RentService{
-   List<Rent> findAll();
+  // List<Rent> find(Long customer_id,  Long game_id);
    Page<Rent> findPage(RentSearchDto dto);
+   List<Rent> findAll();
 }

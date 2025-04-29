@@ -9,25 +9,27 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name="Rent")
+@Table(name = "rent")
 public class Rent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name="customer_name", nullable = false)
+    @ManyToOne
+    @JoinColumn(name="customer_id", nullable = false)
     private Customer customer;
 
-    @Column(name="game_name", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
-    @Column(name="initial_date", nullable = false)
+    @Column(name = "initial_date", nullable = false)
     private LocalDate startDate;
 
-    @Column(name="final_date", nullable = false)
+    @Column(name = "final_date", nullable = false)
     private LocalDate endDate;
 
-    @Column(name="enable", nullable = false)
+    @Column(name = "enable", nullable = false)
     private Boolean enable;
 }
