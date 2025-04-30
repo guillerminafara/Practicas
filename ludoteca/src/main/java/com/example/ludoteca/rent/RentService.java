@@ -9,12 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 public interface RentService {
-    // List<Rent> find(Long customer_id,  Long game_id);
 
-   Page<Rent> findPage(RentSearchDto dto, Long id);
-
-//    Page<Rent> find(RentSearchDto dto, @RequestParam Long customer_id);
-
-
-    List<Rent> findAll();
+   Page<Rent> findPage(RentSearchDto dto, Long id, Long idGame);
+//   List<Rent> findAll();
 }

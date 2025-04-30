@@ -3,16 +3,19 @@
     <form>
         <mat-form-field>
             <mat-label>Título...</mat-label>
-            <mat-select [(value)]="selected">
-                <mat-option *ngFor="let item of items">
+            <mat-select [(ngModel)]="filterGame" name="game">
+                <mat-option *ngFor="let game of games" [value]="game">
+                    {{game.title}}
+                    <!-- <mat-option *ngFor="let item of items"> -->
                     <!-- <mat-icon>{{item.icon}}</mat-icon> -->
                 </mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Cliente...</mat-label>
-            <mat-select [(value)]="selected">
-                <mat-option *ngFor="let item of items">
+            <mat-select [(ngModel)]="filterCustomer" name="customer">
+                <mat-option *ngFor="let cust of customer" [value]="customer">
+                    {{cust.name}}
                     <!-- <mat-icon>{{item.icon}}</mat-icon> -->
                 </mat-option>
             </mat-select>
@@ -25,14 +28,17 @@
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
-        <button mat-raised-button class="buttons2">Filtrar</button>
+        <button mat-raised-button class="buttons2" (click)="onCleanFilter()">Limpiar</button>
 
-        <button mat-raised-button class="buttons2">Limpiar</button>
+        <button mat-raised-button class="buttons2" (click)="onSearch()">Filtrar</button>
+
+
 
     </form>
+
+
+
     <mat-table [dataSource]="dataSource" class="tablee">
-
-
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> Identificador </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>

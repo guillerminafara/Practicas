@@ -13,10 +13,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface RentRepository extends CrudRepository<Rent, Long>, JpaSpecificationExecutor<Rent>{
- // Page<Rent> find(Specification<Rent> spec,Pageable pageable);
-
-
-//  @EntityGraph(attributePaths = {"customer"})
+    //  @EntityGraph(attributePaths = {"customer"})
 //  List<Rent> findByIdCustomer(Specification<Rent> spec);
 //
 //  @EntityGraph(attributePaths = {"game"})

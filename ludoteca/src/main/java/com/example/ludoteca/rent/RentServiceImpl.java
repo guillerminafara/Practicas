@@ -19,32 +19,28 @@ public class RentServiceImpl implements RentService {
     @Autowired
     RentRepository rentRepository;
 
-//    @Override
-//    public Page<Rent> find(RentSearchDto dto, @RequestParam Long customer_id) {
-//        RentSpecification customerSpec = new RentSpecification(new SearchCriteria("customer_id", ":", customer_id));
-//       // RentSpecification gameSpec= new RentSpecification(new SearchCriteria("game_id", ":", game_id));
-//
-//        Specification<Rent> spec= Specification.where(customerSpec);
-//        return this.rentRepository.find(spec,dto.getPageable().getPageable());
-//    }
-
 
     @Override
-    public Page<Rent> findPage(RentSearchDto dto, Long id) {
-        System.out.println("Id: "+ id);
-       Pageable pageable= dto.getPageable().getPageable();
-        RentSpecification customerIdSpec = new RentSpecification(new SearchCriteria("customer_id", ":", id));
-        Specification<Rent> spec= Specification.where(customerIdSpec);
+    public Page<Rent> findPage(RentSearchDto dto, Long idCustomer, Long idGame) {
+        Pageable pageable = dto.getPageable().getPageable();
+        Specification<Rent> spec = Specification.where(null);
+        if (idCustomer != null) {
+            RentSpecification customerIdSpec = new RentSpecification(new SearchCriteria("customer_id", ":", idCustomer));
+            spec = spec.and(customerIdSpec);
+        }
+        if (idGame != null) {
+            RentSpecification gameIdSpec = new RentSpecification(new SearchCriteria("customer_id", ":", idGame));
+            spec = spec.and(gameIdSpec);
+        }
 
         return this.rentRepository.findAll(spec, pageable);
     }
 
 
-
-    @Override
-    public List<Rent> findAll() {
-        return (List<Rent>)this.rentRepository.findAll();
-    }
-
+//    @Override
+//    public List<Rent> findAll() {
+//        return (List<Rent>) this.rentRepository.findAll();
+//    }
+//
 
 }

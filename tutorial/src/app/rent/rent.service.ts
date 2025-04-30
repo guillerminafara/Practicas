@@ -14,14 +14,15 @@ export class RentService {
 
   constructor(private http: HttpClient) { }
 
-  getRents(pageable: Pageable): Observable<RentPage> {
-     return this.http.post<RentPage>('http://localhost:8080/rent', { pageable: pageable });
-    // return of(RENT_DATA);
-  }
-
-  // getAllRents(): Observable<Rent[]>{
-  //   return this.http.get<Rent[]>('http://localhost:8080/rent');
+  // getRents(pageable: Pageable): Observable<RentPage> {
+  //    return this.http.post<RentPage>('http://localhost:8080/rent', { pageable: pageable });
+  //   // return of(RENT_DATA);
   // }
+
+  getRents(request: any): Observable<RentPage>{
+    return this.http.post<RentPage>('http://localhost:8080/rent', request);
+  }
+ 
 
    SaveRent(rent: Rent): Observable<void> {
       let url = 'http://localhost:8080/rent/' + rent.id;

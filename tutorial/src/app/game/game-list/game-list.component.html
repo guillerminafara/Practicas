@@ -11,16 +11,18 @@
             <mat-form-field>
                 <mat-label>Categoría del juego</mat-label>
                 <mat-select disableRipple [(ngModel)]="filterCategory" name="category">
-                    <mat-option *ngFor="let category of categories" [value]="category">{{category.name}}</mat-option>
+                    <mat-option *ngFor="let category of categories" [value]="category">
+                        {{category.name}}
+                    </mat-option>
                 </mat-select>
-            </mat-form-field>    
+            </mat-form-field>
         </form>
 
         <div class="buttons">
-            <button mat-stroked-button (click)="onCleanFilter()">Limpiar</button> 
-            <button mat-stroked-button (click)="onSearch()">Filtrar</button> 
-        </div>   
-    </div>   
+            <button mat-stroked-button (click)="onCleanFilter()">Limpiar</button>
+            <button mat-stroked-button (click)="onSearch()">Filtrar</button>
+        </div>
+    </div>
 
     <div class="game-list">
         <app-game-item *ngFor="let game of games; let i = index;" (click)="editGame(game)" [game]="game">
@@ -28,6 +30,6 @@
     </div>
 
     <div class="buttons">
-        <button mat-flat-button color="primary" (click)="createGame()">Nuevo juego</button>            
-    </div>   
+        <button mat-flat-button color="primary" (click)="createGame()">Nuevo juego</button>
+    </div>
 </div>

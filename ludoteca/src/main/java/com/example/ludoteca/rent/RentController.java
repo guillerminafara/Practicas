@@ -29,34 +29,23 @@ public class RentController {
     @Autowired
     ModelMapper mapper;
 
-    @Operation(summary = "Find", description = "Method that return a list of all Rents")
-    @RequestMapping(path = "/", method = RequestMethod.GET)
-    public List<RentDto>findAll(){
-       List<Rent> rents= rentService.findAll();
-       return rents.stream().map(e -> mapper.map(e, RentDto.class)).collect(Collectors.toList());
-    }
-
-
-
-//    @Operation(summary = "Find", description = "Method that return a list of Rents")
-//    @RequestMapping(path = "", method = RequestMethod.GET)
-//    public List<RentDto> find(@RequestParam(value = "customer_id", required = false) Long customer_id,
-//                                 @RequestParam(value = "game_id", required = false) Long game_id) {
-//
-//        List<Rent> rents = rentService.find(customer_id, game_id);
-//
-//        return rents.stream().map(e -> mapper.map(e, RentDto.class)).collect(Collectors.toList());
-//
-//
+//    @Operation(summary = "Find", description = "Method that return a list of all Rents")
+//    @RequestMapping(path = "/", method = RequestMethod.POST)
+//    public List<RentDto>findAll(){
+//       List<Rent> rents= rentService.findAll();
+//       return rents.stream().map(e -> mapper.map(e, RentDto.class)).collect(Collectors.toList());
 //    }
+
 
     @RequestMapping(path = "", method = RequestMethod.POST)
     @Operation(summary = "Find Page", description = "Method that return a page of Rents")
     public Page<RentDto> find(@RequestBody RentSearchDto dto,
-                                  @RequestParam(name="id", required = false) Long id) {
+                                  @RequestParam(name="id", required = false) Long id,
+                              @RequestParam(name="id", required = false) Long idGame
+    ) {
 
 //        System.out.printf("------------------------------> %s",dto.getPageable().getPageable().toString());
-        Page<Rent> page = this.rentService.findPage(dto,  id);
+        Page<Rent> page = this.rentService.findPage(dto, id, idGame);
 
         return new PageImpl<>(page.getContent()
                 .stream().map(e -> mapper.map(e, RentDto.class))
