@@ -40,12 +40,12 @@ public class RentController {
     @RequestMapping(path = "", method = RequestMethod.POST)
     @Operation(summary = "Find Page", description = "Method that return a page of Rents")
     public Page<RentDto> find(@RequestBody RentSearchDto dto,
-                                  @RequestParam(name="id", required = false) Long id,
-                              @RequestParam(name="id", required = false) Long idGame
+                                  @RequestParam(name="customerId", required = false) Long customerId,
+                              @RequestParam(name="gameId", required = false) Long gameId
     ) {
 
 //        System.out.printf("------------------------------> %s",dto.getPageable().getPageable().toString());
-        Page<Rent> page = this.rentService.findPage(dto, id, idGame);
+        Page<Rent> page = this.rentService.findPage(dto, customerId, gameId);
 
         return new PageImpl<>(page.getContent()
                 .stream().map(e -> mapper.map(e, RentDto.class))

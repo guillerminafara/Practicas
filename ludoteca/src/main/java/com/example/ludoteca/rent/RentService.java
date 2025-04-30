@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface RentService {
 
-   Page<Rent> findPage(RentSearchDto dto, Long id, Long idGame);
+   Page<Rent> findPage(RentSearchDto dto, Long customerId, Long gameId);
 //   List<Rent> findAll();
 }

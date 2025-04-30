@@ -21,19 +21,23 @@ public class RentServiceImpl implements RentService {
 
 
     @Override
-    public Page<Rent> findPage(RentSearchDto dto, Long idCustomer, Long idGame) {
-        Pageable pageable = dto.getPageable().getPageable();
+    public Page<Rent> findPage(RentSearchDto dto, Long customerId, Long gameId) {
         Specification<Rent> spec = Specification.where(null);
-        if (idCustomer != null) {
-            RentSpecification customerIdSpec = new RentSpecification(new SearchCriteria("customer_id", ":", idCustomer));
+//
+//        RentSpecification customerIdSpec = new RentSpecification(new SearchCriteria("customer_id", ":", customerId));
+//        RentSpecification gameIdSpec = new RentSpecification(new SearchCriteria("game_id", ":", gameId));
+
+//        Specification<Rent> spec = Specification.where(customerIdSpec).and(gameIdSpec);
+        if (customerId != null) {
+            RentSpecification customerIdSpec = new RentSpecification(new SearchCriteria("customer_id", ":", customerId));
             spec = spec.and(customerIdSpec);
         }
-        if (idGame != null) {
-            RentSpecification gameIdSpec = new RentSpecification(new SearchCriteria("customer_id", ":", idGame));
+        if (gameId != null) {
+            RentSpecification gameIdSpec = new RentSpecification(new SearchCriteria("game_id", ":", gameId));
             spec = spec.and(gameIdSpec);
         }
 
-        return this.rentRepository.findAll(spec, pageable);
+        return this.rentRepository.findAll(spec, dto.getPageable().getPageable());
     }
 
 

@@ -29,9 +29,9 @@ export class RentListComponent implements OnInit {
   //   value: 'search', icon: 'home', label: 'Título'
   // }]
   games: Game[];
-  customer:Customer[];
-  filterGame:Game;
-  filterCustomer:Customer;
+  customer: Customer[];
+  filterGame: Game;
+  filterCustomer: Customer;
   dateSelected: Date = new Date();
 
 
@@ -46,22 +46,23 @@ export class RentListComponent implements OnInit {
   ngOnInit(): void {
     this.loadPage();
     this.gameService.getGames().subscribe(
-      games => this.games=games
+      games => this.games = games
     );
     this.customerService.getCustomer().subscribe(
-      customers => this.customer=customers
+      customers => this.customer = customers
     )
+
   }
 
-  onCleanFilter():void{
-    this.filterGame=null;
-    this.filterCustomer=null;
+  onCleanFilter(): void {
+    this.filterGame = null;
+    this.filterCustomer = null;
     this.onSearch();
   }
 
-  onSearch(): void{
-   this.loadPage()
-   
+  onSearch(): void {
+    this.loadPage()
+
   }
 
   loadPage(event?: PageEvent) {
@@ -78,22 +79,24 @@ export class RentListComponent implements OnInit {
       pageable.pageSize = event.pageSize
       pageable.pageNumber = event.pageIndex;
     }
-   
 
-    const request={
-      pageable:pageable,
-      gameId : this.filterGame != null ? this.filterGame.id : null,
-      customerId : this.filterCustomer != null ? this.filterGame.id :null,
-      
-    };
-    this.rentService.getRents(request).subscribe((data) => {
+
+    // const request={
+    //   pageable:pageable,
+    //   gameId : this.filterGame != null ? this.filterGame.id : null,
+    //   customerId : this.filterCustomer != null ? this.filterCustomer.id :null,
+
+    // };
+    const gameId = this.filterGame != null ? this.filterGame.id : null;
+    const customerId= this.filterCustomer != null ? this.filterCustomer.id : null;
+    this.rentService.getRents(pageable,customerId,gameId ).subscribe((data) => {
       this.dataSource.data = data.content;
       this.pageNumber = data.pageable.pageNumber;
       this.pageSize = data.pageable.pageSize;
       this.totalElements = data.totalElements
     }
     );
-   
+
   }
   createRent() { }
 

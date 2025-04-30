@@ -13,7 +13,7 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Cliente...</mat-label>
-            <mat-select [(ngModel)]="filterCustomer" name="customer">
+            <mat-select [(ngModel)]="filterCustomer"  name="customer">
                 <mat-option *ngFor="let cust of customer" [value]="customer">
                     {{cust.name}}
                     <!-- <mat-icon>{{item.icon}}</mat-icon> -->
