@@ -13,8 +13,8 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Cliente...</mat-label>
-            <mat-select [(ngModel)]="filterCustomer"  name="customer">
-                <mat-option *ngFor="let cust of customer" [value]="customer">
+            <mat-select [(ngModel)]="filterCustomer"  name="cust">
+                <mat-option *ngFor="let cust of customer" [value]="cust">
                     {{cust.name}}
                     <!-- <mat-icon>{{item.icon}}</mat-icon> -->
                 </mat-option>
@@ -23,7 +23,7 @@
 
         <mat-form-field>
             <mat-label>Fecha...</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="dateSelected">
+            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" name="date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>

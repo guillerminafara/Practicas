@@ -32,7 +32,7 @@ export class RentListComponent implements OnInit {
   customer: Customer[];
   filterGame: Game;
   filterCustomer: Customer;
-  dateSelected: Date = new Date();
+  selectedDate: Date ;
 
 
   constructor(
@@ -89,7 +89,9 @@ export class RentListComponent implements OnInit {
     // };
     const gameId = this.filterGame != null ? this.filterGame.id : null;
     const customerId= this.filterCustomer != null ? this.filterCustomer.id : null;
-    this.rentService.getRents(pageable,customerId,gameId ).subscribe((data) => {
+    const dateSelectedDay= this.selectedDate != null ? this.selectedDate.toLocaleDateString('en-CA') :null;
+    console.log("------>", gameId, customerId)
+    this.rentService.getRents(pageable,customerId,gameId, dateSelectedDay ).subscribe((data) => {
       this.dataSource.data = data.content;
       this.pageNumber = data.pageable.pageNumber;
       this.pageSize = data.pageable.pageSize;

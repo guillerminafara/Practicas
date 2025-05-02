@@ -25,7 +25,7 @@ public class Rent {
     private Game game;
 
     @Column(name = "initial_date", nullable = false)
-    private LocalDate startDate;
+    private LocalDate intialDate;
 
     @Column(name = "final_date", nullable = false)
     private LocalDate endDate;
@@ -49,12 +49,12 @@ public class Rent {
         this.enable = enable;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public LocalDate getIntialDate() {
+        return intialDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setIntialDate(LocalDate intialDate) {
+        this.intialDate = intialDate;
     }
 
     public Customer getCustomer() {

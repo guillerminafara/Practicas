@@ -21,20 +21,31 @@ public class RentServiceImpl implements RentService {
 
 
     @Override
-    public Page<Rent> findPage(RentSearchDto dto, Long customerId, Long gameId) {
+    public Page<Rent> findPage(RentSearchDto dto, Long customerId, Long gameId, String dateSelectedDay) {
         Specification<Rent> spec = Specification.where(null);
 //
 //        RentSpecification customerIdSpec = new RentSpecification(new SearchCriteria("customer_id", ":", customerId));
 //        RentSpecification gameIdSpec = new RentSpecification(new SearchCriteria("game_id", ":", gameId));
 
 //        Specification<Rent> spec = Specification.where(customerIdSpec).and(gameIdSpec);
-        if (customerId != null) {
-            RentSpecification customerIdSpec = new RentSpecification(new SearchCriteria("customer_id", ":", customerId));
-            spec = spec.and(customerIdSpec);
-        }
-        if (gameId != null) {
-            RentSpecification gameIdSpec = new RentSpecification(new SearchCriteria("game_id", ":", gameId));
-            spec = spec.and(gameIdSpec);
+        if(customerId!=null && gameId != null){
+            RentSpecification customerIdSpec = new RentSpecification(new SearchCriteria("customer.id", ":", customerId));
+            RentSpecification gameIdSpec = new RentSpecification(new SearchCriteria("game.id", ":", gameId));
+            spec = spec.and(customerIdSpec).and(gameIdSpec);
+        }else{
+            if (customerId != null) {
+                RentSpecification customerIdSpec = new RentSpecification(new SearchCriteria("customer.id", ":", customerId));
+                spec = spec.and(customerIdSpec);
+            }
+            if (gameId != null) {
+                RentSpecification gameIdSpec = new RentSpecification(new SearchCriteria("game.id", ":", gameId));
+                spec = spec.and(gameIdSpec);
+            }
+            if(dateSelectedDay != null){
+               RentSpecification dateSelectedDay1= new RentSpecification(new SearchCriteria("initialDate", ":", dateSelectedDay));
+               spec=spec.and(dateSelectedDay1);
+            }
+
         }
 
         return this.rentRepository.findAll(spec, dto.getPageable().getPageable());

@@ -5,13 +5,12 @@ import com.example.ludoteca.game.model.GameDto;
 
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class RentDto {
     private Long id;
     private CustomerDto customer;
     private GameDto game;
-    private LocalDate startDate;
+    private LocalDate initialDate;
     private LocalDate endDate;
     private Boolean enable;
 
@@ -39,12 +38,12 @@ public class RentDto {
         this.game = game;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public LocalDate getInitialDate() {
+        return initialDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setInitialDate(LocalDate initialDate) {
+        this.initialDate = initialDate;
     }
 
     public LocalDate getEndDate() {

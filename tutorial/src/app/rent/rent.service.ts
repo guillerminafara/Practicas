@@ -18,18 +18,26 @@ export class RentService {
   //   return this.http.post<RentPage>( ,this.composeFindUrl(customerId, gameId));
   // }
 
-  getRents(pageable: Pageable, customerId: number, gameId: number): Observable<RentPage> {
-    return this.http.post<RentPage>( this.composeFindUrl(customerId, gameId), { pageable: pageable });
+  getRents(pageable: Pageable, customerId: number, gameId: number, dateSelectedDay:string): Observable<RentPage> {
+    return this.http.post<RentPage>( this.composeFindUrl(customerId, gameId,dateSelectedDay ), { pageable: pageable });
   }
 
-  private composeFindUrl(customerId: number, gameId: number): string {
+  private composeFindUrl(customerId: number, gameId: number, dateSelectedDay): string {
     let param ='';
-    if(customerId != null){
-      param +='customerId'+ customerId+"";
+    if(customerId != null && gameId!= null){
+      param+='customerId='+ customerId+"&"+'gameId='+ gameId+"";
+    }else{
+      if(customerId != null){
+        param +='customerId='+ customerId+"";
+      }
+      if(gameId!= null){
+        param += 'gameId='+ gameId+"";
+      }
+      if(dateSelectedDay!= null){
+        param+= 'date='+dateSelectedDay;
+      }
     }
-    if(gameId!= null){
-      param += 'gameId'+ gameId+"";
-    }
+  
 
     let url = 'http://localhost:8080/rent';
     if (param == '') return url;

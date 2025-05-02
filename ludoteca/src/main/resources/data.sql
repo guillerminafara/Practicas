@@ -33,6 +33,6 @@ INSERT INTO rent(customer_id, game_id, initial_date, final_date, enable)VALUES(8
 INSERT INTO rent(customer_id, game_id, initial_date, final_date, enable)VALUES(3, 2, '2025-04-30', '2025-05-13',1);
 INSERT INTO rent(customer_id, game_id, initial_date, final_date, enable)VALUES(2, 6, '2025-04-28', '2025-05-04',1);
 INSERT INTO rent(customer_id, game_id, initial_date, final_date, enable)VALUES(8, 3, '2025-05-02', '2025-05-10',1);
-INSERT INTO rent(customer_id, game_id, initial_date, final_date, enable)VALUES(1, 5, '2025-04-23', '2025-05-07',1);
+INSERT INTO rent(customer_id, game_id, initial_date, final_date, enable)VALUES(1, 6, '2025-04-23', '2025-05-07',1);
 INSERT INTO rent(customer_id, game_id, initial_date, final_date, enable)VALUES(6, 3, '2025-04-25', '2025-05-10',1);
 INSERT INTO rent(customer_id, game_id, initial_date, final_date, enable)VALUES(8, 4, '2025-04-21', '2025-04-30',1);

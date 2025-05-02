@@ -19,6 +19,6 @@ public interface RentRepository extends CrudRepository<Rent, Long>, JpaSpecifica
 //  @EntityGraph(attributePaths = {"game"})
 //  List<Rent> findByIdGame(Specification<Rent>spec);
     @Override
-    @EntityGraph(attributePaths = {"customerId","gameId"})
+    @EntityGraph(attributePaths = {"customer","game", "initialDate"})
     Page<Rent>findAll(Specification<Rent>spec, Pageable pageable);
 }
