@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageImpl;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,9 +43,9 @@ public class RentController {
     public Page<RentDto> find(@RequestBody RentSearchDto dto,
                                   @RequestParam(name="customerId", required = false) Long customerId,
                               @RequestParam(name="gameId", required = false) Long gameId,
-                              @RequestParam (name="initialDay", required = false) String initialDay
+                              @RequestParam (name="initialDay", required = false) LocalDate initialDay
     ) {
-
+        System.out.println("--------------------------->"+initialDay );
 //        System.out.printf("------------------------------> %s",dto.getPageable().getPageable().toString());
         Page<Rent> page = this.rentService.findPage(dto, customerId, gameId, initialDay);
 

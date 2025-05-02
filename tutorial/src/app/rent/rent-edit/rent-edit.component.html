@@ -1,1 +1,52 @@
-<p>rent-edit works!</p>
+<div class="container">
+    <h1>Préstamo</h1>
+
+    <form>
+        <mat-form-field>
+            <mat-label>Identificador</mat-label>
+            <input type="text"  [(ngModel)]="rent.id" name ="idd "disabled="false">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Nombre del cliente: </mat-label>
+            <mat-select [(ngModel)]="customerName" name="cust" required>
+                <mat-option *ngFor="let cust of customers" [value]="cust">
+                    {{cust.name}}
+                </mat-option>
+            </mat-select>
+            <mat-error> Selecciona un cliente</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Nombre del juego: </mat-label>
+            <mat-select [(ngModel)]="gameName" name="game">
+                <mat-option *ngFor="let game of games" [value]="game">
+                    {{game.title}}
+                </mat-option>
+            </mat-select>
+            <mat-error>Selecciona un juego</mat-error>
+        </mat-form-field>
+        <div class="datePicker">
+
+            <mat-form-field>
+                <mat-label>Fecha de Préstamo: </mat-label>
+                <input matInput [matDatepicker]="intialPicker" [(ngModel)]="selectedInitialDay" name="initialDay">
+                <mat-datepicker-toggle matSuffix [for]="intialPicker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Fecha de Préstamo: </mat-label>
+                <input matInput [matDatepicker]="endPicker" [(ngModel)]="selectedEndDay" name="endDay">
+                <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+    </form>
+
+    <div class="buttons">
+        <button mat-stroked-button>No</button>
+        <button mat-flat-button color="primary">Sí</button>
+    </div>
+</div>

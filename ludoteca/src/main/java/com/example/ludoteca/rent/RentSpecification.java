@@ -5,6 +5,8 @@ import com.example.ludoteca.rent.model.Rent;
 import jakarta.persistence.criteria.*;
 import org.springframework.data.jpa.domain.Specification;
 
+import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.path;
+
 public class RentSpecification implements Specification<Rent> {
     private static final long serialVersionUID = 1L;
     private final SearchCriteria criteria;
@@ -32,6 +34,12 @@ public class RentSpecification implements Specification<Rent> {
             } else {
                 return builder.equal(path, criteria.getValue());// para números o fechas
             }
+        }
+        if (criteria.getOperation().equalsIgnoreCase("<=")){
+            return builder.lessThanOrEqualTo(root.get(criteria.getKey()),(Comparable)criteria.getValue());
+        }
+        if(criteria.getOperation().equalsIgnoreCase(">=")){
+            return builder.greaterThanOrEqualTo(root.get(criteria.getKey()),(Comparable)criteria.getValue());
         }
 
         return null;

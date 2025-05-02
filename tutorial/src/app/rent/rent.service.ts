@@ -18,30 +18,35 @@ export class RentService {
   //   return this.http.post<RentPage>( ,this.composeFindUrl(customerId, gameId));
   // }
 
-  getRents(pageable: Pageable, customerId: number, gameId: number, dateSelectedDay:string): Observable<RentPage> {
-    return this.http.post<RentPage>( this.composeFindUrl(customerId, gameId,dateSelectedDay ), { pageable: pageable });
+  getRents(pageable: Pageable, customerId: number, gameId: number, dateSelectedDay: string): Observable<RentPage> {
+    return this.http.post<RentPage>(this.composeFindUrl(customerId, gameId, dateSelectedDay), { pageable: pageable });
   }
 
   private composeFindUrl(customerId: number, gameId: number, dateSelectedDay): string {
-    let param ='';
-    if(customerId != null && gameId!= null){
-      param+='customerId='+ customerId+"&"+'gameId='+ gameId+"";
-    }else{
-      if(customerId != null){
-        param +='customerId='+ customerId+"";
-      }
-      if(gameId!= null){
-        param += 'gameId='+ gameId+"";
-      }
-      if(dateSelectedDay!= null){
-        param+= 'date='+dateSelectedDay;
-      }
+    let param = new URLSearchParams();
+    // if(customerId != null && gameId!= null){
+    //   param+='customerId='+ customerId+"&"+'gameId='+ gameId+"";
+    // }else{
+    if (customerId != null) {
+      param.append('customerId', customerId.toString());
     }
-  
-
+    if (gameId != null) {
+      param.append('gameId', gameId + "");
+    }
+    if (dateSelectedDay != null) {
+      param.append('initialDay', dateSelectedDay);
+      console.log("comprobaciones de NO  nuoll", param);
+    } else {
+      console.log("comprobaciones de nuoll", param);
+    }
+    // }
     let url = 'http://localhost:8080/rent';
-    if (param == '') return url;
-    else return url + '?' + param;
+    const queryString = param.toString();
+
+    // let url = 'http://localhost:8080/rent';
+    // if (param.toString() == '') return url;
+    // else return url + '?' + param.toString();
+    return  queryString ? `${url}?${queryString}` :url;
   }
 
   SaveRent(rent: Rent): Observable<void> {

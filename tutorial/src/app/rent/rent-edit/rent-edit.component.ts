@@ -7,6 +7,7 @@ import { Customer } from 'src/app/customer/model/Customer';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Rent } from '../model/rent';
 
+
 @Component({
   selector: 'app-rent-edit',
   templateUrl: './rent-edit.component.html',
@@ -14,9 +15,18 @@ import { Rent } from '../model/rent';
 })
 export class RentEditComponent implements OnInit {
   games: Game[];
-  customer: Customer[];
+  customers: Customer[];
   rent: Rent;
-  constructor(private rentService: RentService,
+
+  customerName:Customer;
+  gameName:Game;
+  Identificador: number;
+  selectedInitialDay: Date;
+  intialPicker: Date;
+  endPicker: Date;
+  selectedEndDay: Date;
+  constructor(
+    private rentService: RentService,
     private gameService: GameService,
     private customerService: CustomerService,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -30,24 +40,35 @@ export class RentEditComponent implements OnInit {
     //   this.rent = new Rent();
     // }
 
-    // this.gameService.getGames().subscribe(
-    //   games => {
-    //     this.games = games
-    //     if (this.rent.game != null) {
-    //       let gameFilter: Game[] = games.filter(ga => ga.id == this.data.rent.game.id);
-    //       if(gameFilter != null){
-    //         this.rent.game= gameFilter[0];
-    //       }
-    //     }
+    this.gameService.getGames().subscribe(
+      games => {
+        this.games = games
+        if (this.rent.game != null) {
+          let gameFilter= games.filter(ga =>
+             ga.id == this.data.rent.game.id);
+          if (gameFilter != null) {
+            this.rent.game = gameFilter[0];
+          }
+        }
 
-    //   }
-    // );
-    // this.customerService.getCustomer().subscribe(
-    //   customers => { this.customer = customers
+      }
+    );
+    this.customerService.getCustomer().subscribe();
+    // this.gameService.getGames().subscribe();
+    this.customerService.getCustomer().subscribe(
+      customers => {
+        this.customers = customers
+     
+        if (this.rent.customer != null) {
+          let customerFilter = customers.find(cust => cust.id == this.data.rent.customer.id);
+         console.log("<<----------------->", customerFilter);
+          if (customerFilter != null) {
+            this.rent.customer = customerFilter[0];
+          }
+        }
 
-
-    //    }
-    //)
+      }
+    )
   }
 
 }

@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -21,18 +22,14 @@ public class RentServiceImpl implements RentService {
 
 
     @Override
-    public Page<Rent> findPage(RentSearchDto dto, Long customerId, Long gameId, String dateSelectedDay) {
+    public Page<Rent> findPage(RentSearchDto dto, Long customerId, Long gameId, LocalDate dateSelectedDay) {
         Specification<Rent> spec = Specification.where(null);
-//
-//        RentSpecification customerIdSpec = new RentSpecification(new SearchCriteria("customer_id", ":", customerId));
-//        RentSpecification gameIdSpec = new RentSpecification(new SearchCriteria("game_id", ":", gameId));
 
-//        Specification<Rent> spec = Specification.where(customerIdSpec).and(gameIdSpec);
-        if(customerId!=null && gameId != null){
-            RentSpecification customerIdSpec = new RentSpecification(new SearchCriteria("customer.id", ":", customerId));
-            RentSpecification gameIdSpec = new RentSpecification(new SearchCriteria("game.id", ":", gameId));
-            spec = spec.and(customerIdSpec).and(gameIdSpec);
-        }else{
+//        if(customerId!=null && gameId != null){
+//            RentSpecification customerIdSpec = new RentSpecification(new SearchCriteria("customer.id", ":", customerId));
+//            RentSpecification gameIdSpec = new RentSpecification(new SearchCriteria("game.id", ":", gameId));
+//            spec = spec.and(customerIdSpec).and(gameIdSpec);
+//        }else{
             if (customerId != null) {
                 RentSpecification customerIdSpec = new RentSpecification(new SearchCriteria("customer.id", ":", customerId));
                 spec = spec.and(customerIdSpec);
@@ -42,11 +39,16 @@ public class RentServiceImpl implements RentService {
                 spec = spec.and(gameIdSpec);
             }
             if(dateSelectedDay != null){
-               RentSpecification dateSelectedDay1= new RentSpecification(new SearchCriteria("initialDate", ":", dateSelectedDay));
-               spec=spec.and(dateSelectedDay1);
+                System.out.println("fecha que llega"+"---------->"+ dateSelectedDay);
+               RentSpecification dateSelectedInitialSpec= new RentSpecification(new SearchCriteria("initialDate", "<=", dateSelectedDay));
+                RentSpecification dateSelectedFinalSpec= new RentSpecification(new SearchCriteria("endDate", ">=", dateSelectedDay));
+
+               spec=spec.and(dateSelectedInitialSpec).and(dateSelectedFinalSpec);
+            }else{
+                System.out.println("--------------> DA NULL<-----------");
             }
 
-        }
+//        }
 
         return this.rentRepository.findAll(spec, dto.getPageable().getPageable());
     }
