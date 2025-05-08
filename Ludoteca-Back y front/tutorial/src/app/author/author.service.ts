@@ -22,12 +22,15 @@ export class AuthorService {
   }
 
   SaveAuthor(authos: Author): Observable<void> {
-    let url = 'http://localhost:8080/author/' + authos.id;
+    let url = 'http://localhost:8080/author';
+
+    console.log("------------>console", JSON.stringify(authos))
+    console.log("console log url",url )
     if (authos.id != null) url += '/' + authos.id;
     return this.http.put<void>(url, authos);
   }
 
   deleteAuthor(idAuthor: number): Observable<void> {
-    return this.http.delete<void>('http://localhost/8080/author/' + idAuthor);
+    return this.http.delete<void>('http://localhost:8080/author/' + idAuthor);
   }
 }
