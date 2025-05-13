@@ -64,7 +64,7 @@ export class RentListComponent implements OnInit {
   }
 
   loadPage(event?: PageEvent) {
-    let pageable: Pageable = {
+    const pageable: Pageable = {
       pageNumber: this.pageNumber,
       pageSize: this.pageSize,
       sort: [{
@@ -80,7 +80,6 @@ export class RentListComponent implements OnInit {
     const gameId = this.filterGame != null ? this.filterGame.id : null;
     const customerId = this.filterCustomer != null ? this.filterCustomer.id : null;
     const dateSelectedDay = this.selectedDate != null ? this.selectedDate.toLocaleDateString('en-CA') : null;
-    console.log("s------>", dateSelectedDay)
     this.rentService.getRents(pageable, customerId, gameId, dateSelectedDay).subscribe((data) => {
       this.dataSource.data = data.content;
       this.pageNumber = data.pageable.pageNumber;

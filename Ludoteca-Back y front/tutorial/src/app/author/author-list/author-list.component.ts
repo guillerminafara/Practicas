@@ -36,7 +36,7 @@ export class AuthorListComponent implements OnInit {
   }
 
   loadPage(event?: PageEvent) {
-    let pageable: Pageable = {
+    const pageable: Pageable = {
       pageNumber: this.pageNumber,
       pageSize: this.pageSize,
       sort: [{

@@ -1,7 +1,10 @@
 package com.example.ludoteca.customer.model;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class CustomerDto {
     private Long id;
+    @NotBlank(message= "No se admiten carácteres en blanco")
     private String name;
 
     public Long getId() {

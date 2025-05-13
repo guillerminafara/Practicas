@@ -4,6 +4,7 @@ import com.example.ludoteca.customer.model.Customer;
 import com.example.ludoteca.customer.model.CustomerDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class CustomerController {
     @Operation(summary = "Save or Update", description = "Method that saves or updates a customer")
     @RequestMapping(path = {"", "/{id}"}, method = RequestMethod.PUT)
     public void save(@PathVariable(name = "id", required = false) Long id,
-                     @RequestBody CustomerDto dto) throws Exception {
+                    @Valid @RequestBody CustomerDto dto) throws Exception {
         this.customerService.save(id, dto);
     }
 

@@ -50,7 +50,6 @@ public class RentServiceImpl implements RentService {
             spec = spec.and(gameIdSpec);
         }
         if (dateSelectedDay != null) {
-            System.out.println("fecha que llega" + "---------->" + dateSelectedDay);
             RentSpecification dateSelectedInitialSpec = new RentSpecification(new SearchCriteria("initialDate", "<=", dateSelectedDay));
             RentSpecification dateSelectedFinalSpec = new RentSpecification(new SearchCriteria("endDate", ">=", dateSelectedDay));
             spec = spec.and(dateSelectedInitialSpec).and(dateSelectedFinalSpec);

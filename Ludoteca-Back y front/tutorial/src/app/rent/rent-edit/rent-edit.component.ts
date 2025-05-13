@@ -75,7 +75,7 @@ export class RentEditComponent implements OnInit {
       games => {
         this.games = games
         if (this.rent.game) {
-          let gameFilter = games.filter(ga =>
+          const gameFilter = games.filter(ga =>
             ga.id == this.rent.game.id);
 
           if (gameFilter) {
@@ -88,10 +88,8 @@ export class RentEditComponent implements OnInit {
     this.customerService.getCustomer().subscribe(
       customers => {
         this.customers = customers
-
         if (this.rent.customer) {
-          let customerFilter = customers.find(cust => cust.id == this.data.rent.customer.id);
-          console.log("<<----------------->", customerFilter);
+          const customerFilter = customers.find(cust => cust.id == this.data.rent.customer.id);
           if (customerFilter) {
             this.rent.customer = customerFilter[0];
           }
@@ -113,7 +111,6 @@ export class RentEditComponent implements OnInit {
     if (this.rent.customer != null || this.rent.initialDate != null || this.rent.endDate != null) {
       this.rent.initialDate = this.selectedInitialDay.toLocaleDateString('en-CA')
       this.rent.endDate = this.selectedEndDay.toLocaleDateString('en-CA')
-      console.log(JSON.stringify(this.rent))
       this.rentService.SaveRent(this.rent).subscribe({
         next: () => {
           this.dialogRef.close();
@@ -133,10 +130,7 @@ export class RentEditComponent implements OnInit {
           } else if (error.status === 500) {
             this.errorB = true;
             this.errorText = "Error interno del servidor.";
-          } else {
-            console.log(error.status);
           }
-
         }
       })
     }

@@ -1,8 +1,12 @@
 package com.example.ludoteca.author.model;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class AuthorDto {
     private Long id;
+    @NotBlank(message= "No se admiten carácteres en blanco")
     private String name;
+    @NotBlank(message= "No se admiten carácteres en blanco")
     private String nationality;
 
     public Long getId() {

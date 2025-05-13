@@ -2,9 +2,11 @@ package com.example.ludoteca.game.model;
 
 import com.example.ludoteca.author.model.AuthorDto;
 import com.example.ludoteca.category.model.CategoryDto;
+import jakarta.validation.constraints.NotBlank;
 
 public class GameDto {
     private Long id;
+    @NotBlank(message= "No se admiten carácteres en blanco")
     private String title;
     private String age;
     private CategoryDto category;

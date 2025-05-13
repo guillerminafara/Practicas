@@ -5,6 +5,7 @@ import com.example.ludoteca.author.model.AuthorDto;
 import com.example.ludoteca.author.model.AuthorSearchDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,7 +39,8 @@ public class AuthorController {
 
     @Operation(summary = "Save or Update", description = "Method that saves or updates a Author")
     @RequestMapping(path = {"", "/{id}"}, method = RequestMethod.PUT)
-    public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody AuthorDto dto) {
+    public void save(@PathVariable(name = "id", required = false) Long id,
+                     @Valid @RequestBody AuthorDto dto) {
         this.authorService.save(id, dto);
     }
 
