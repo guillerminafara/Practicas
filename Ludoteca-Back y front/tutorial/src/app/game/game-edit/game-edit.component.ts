@@ -6,6 +6,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CategoryService } from 'src/app/category/category.service';
 import { AuthorService } from 'src/app/author/author.service';
 import { GameService } from '../game.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { spaceValidator } from 'src/app/validators/space-validator';
+import { positiveIntegerValidator } from 'src/app/validators/positive-integer-validator';
 
 @Component({
   selector: 'app-game-edit',
@@ -17,14 +20,25 @@ export class GameEditComponent implements OnInit {
   game: Game;
   authors: Author[];
   categories: Category[];
-
+  form: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<GameEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private gameService: GameService,
     private categoryService: CategoryService,
     private authorService: AuthorService,
-  ) { }
+    private fb: FormBuilder
+  ) {
+
+    this.form = this.fb.group({
+      id: [{ value: '', disabled: true }],
+      titleGame: ['', [Validators.required, spaceValidator]],
+      agaRange: ['', [Validators.required, positiveIntegerValidator]],
+      category: ['', [Validators.required]],
+      author: ['', [Validators.required]]
+
+    })
+  }
   ngOnInit(): void {
     if (this.data.game != null) {
       this.game = Object.assign({}, this.data.game);
@@ -68,5 +82,7 @@ export class GameEditComponent implements OnInit {
   onClose() {
     this.dialogRef.close();
   }
+
+
 
 }

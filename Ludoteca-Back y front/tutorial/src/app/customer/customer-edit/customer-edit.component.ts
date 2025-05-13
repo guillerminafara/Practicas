@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Customer } from '../model/Customer';
 import { CustomerService } from '../customer.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { spaceValidator } from 'src/app/validators/space-validator';
 
 @Component({
   selector: 'app-customer-edit',
@@ -12,12 +14,17 @@ export class CustomerEditComponent implements OnInit {
   customer: Customer;
   errorText: String;
   errorB:Boolean;
+   form: FormGroup
   constructor(
     public dialogRef: MatDialogRef<CustomerEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+      private fb: FormBuilder
   ) {
-
+ this.form = this.fb.group({
+      id: [{ value: '', disabled: true }],
+      name: ['', [Validators.required, spaceValidator]]
+    })
 
   }
   ngOnInit(): void {

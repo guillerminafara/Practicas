@@ -78,9 +78,6 @@ public class RentServiceImpl implements RentService {
         rent.setEndDate(dto.getEndDate());
         rent.setInitialDate(dto.getInitialDate());
 
-
-        System.out.println("REVISION DE FECHAS "+ dto.getEndDate()+
-                dto.getInitialDate()+ dto.getCustomer().getName()+ dto.getGame().getTitle());
         Boolean rangeDate=validateGameRangeDate(dto);
         Boolean rentedGameDate = filterGameByDate( dto, dto.getGame().getId() ); // true= no prestado
         Boolean customerRentals= countCustomersRents(dto); // true= no supera los 2 alquileres
@@ -144,8 +141,8 @@ public class RentServiceImpl implements RentService {
         Boolean bandera= true;
         Specification<Rent> customerRentals= new RentSpecification(
                 new SearchCriteria("customer.id",":",dto.getCustomer().getId()))
-                .and(new RentSpecification(new SearchCriteria("initialDate", "<=", dto.getInitialDate())))
-                .and(new RentSpecification(new SearchCriteria("endDate", ">=", dto.getEndDate())));
+                .and(new RentSpecification(new SearchCriteria("initialDate", "<=", dto.getEndDate())))
+                .and(new RentSpecification(new SearchCriteria("endDate", ">=", dto.getInitialDate())));
         if(this.rentRepository.count(customerRentals)>=2){
             bandera= false;
             System.out.println("------------------>entra en false countCustomersRents" );

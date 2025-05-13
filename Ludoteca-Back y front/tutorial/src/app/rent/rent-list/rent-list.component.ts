@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material/table';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { Pageable } from 'src/app/core/model/page/Pageable';
 import { RentService } from '../rent.service';
 import { Rent } from '../model/rent';
@@ -35,16 +35,21 @@ export class RentListComponent implements OnInit {
   customer: Customer[];
   filterGame: Game;
   filterCustomer: Customer;
-  selectedDate: Date ;
+  selectedDate: Date;
 
 
   constructor(
     private rentService: RentService,
     private gameService: GameService,
     private customerService: CustomerService,
-    private dialog:MatDialog
+    private dialog: MatDialog,
+    private paginator: MatPaginatorIntl
   ) {
-
+    this.paginator.itemsPerPageLabel = "Registros por página";
+    this.paginator.previousPageLabel = "Página anterior";
+    this.paginator.nextPageLabel = "Página siguiente";
+    this.paginator.firstPageLabel = "Primera página";
+    this.paginator.lastPageLabel = "Última página";
 
   }
   ngOnInit(): void {
@@ -59,7 +64,7 @@ export class RentListComponent implements OnInit {
   }
 
   onCleanFilter(): void {
-    this.selectedDate= null;
+    this.selectedDate = null;
     this.filterGame = null;
     this.filterCustomer = null;
     this.onSearch();
@@ -87,10 +92,10 @@ export class RentListComponent implements OnInit {
 
 
     const gameId = this.filterGame != null ? this.filterGame.id : null;
-    const customerId= this.filterCustomer != null ? this.filterCustomer.id : null;
-    const dateSelectedDay= this.selectedDate != null ? this.selectedDate.toLocaleDateString('en-CA') : null;
+    const customerId = this.filterCustomer != null ? this.filterCustomer.id : null;
+    const dateSelectedDay = this.selectedDate != null ? this.selectedDate.toLocaleDateString('en-CA') : null;
     console.log("s------>", dateSelectedDay)
-    this.rentService.getRents(pageable,customerId,gameId, dateSelectedDay ).subscribe((data) => {
+    this.rentService.getRents(pageable, customerId, gameId, dateSelectedDay).subscribe((data) => {
       this.dataSource.data = data.content;
       this.pageNumber = data.pageable.pageNumber;
       this.pageSize = data.pageable.pageSize;
@@ -99,21 +104,26 @@ export class RentListComponent implements OnInit {
     );
 
   }
-  createRent() { 
+  createRent() {
 
     const dialogRef = this.dialog.open(RentEditComponent, {
-      data:{}
+      data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
       this.ngOnInit();
     })
   }
 
-  deleteRent(rent:Rent) {
+  deleteRent(rent: Rent) {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
-      data: { title: "Eliminar cliente", description: "Atención si borra el el alquiler se perderán sus datos.<br> ¿Desea eliminar el el alquiler?" }
-    });
 
+      data: {
+        title: "Eliminar cliente",
+        description: "Atención si borra el alquiler se perderán sus datos. ¿Desea eliminar el alquiler?"
+      }
+      
+    });
+  
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.rentService.deleteRent(rent.id).subscribe(result => {

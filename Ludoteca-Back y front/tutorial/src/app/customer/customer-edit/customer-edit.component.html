@@ -2,15 +2,15 @@
     <h1 *ngIf="customer.id== null">Crear cliente</h1>
     <h1 *ngIf="customer.id!=null">Modificar cliente</h1>
 
-    <form>
+    <form [formGroup]="form">
         <mat-form-field>
             <mat-label>Identificador</mat-label>
-            <input type="text" matInput placeholder="Identificador" [(ngModel)]="customer.id" name="id" disabled>
+            <input type="text" matInput placeholder="Identificador" [(ngModel)]="customer.id" name="id" formControlName="id">
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Nombre</mat-label>
-            <input type="text" matInput placeholder="Nombre del cliente" [(ngModel)]="customer.name"name="name" required>
+            <input type="text" matInput placeholder="Nombre del cliente" [(ngModel)]="customer.name"name="name" formControlName="name" >
             <mat-error>El nombre no puede estar vacío</mat-error>
            
         </mat-form-field>
@@ -19,6 +19,6 @@
 
     <div class="buttons">
         <button mat-stroked-button (click)="onClose()">Cerrar</button>
-        <button mat-flat-button color="primary" (click)="onSave()">Guardar</button>
+        <button mat-flat-button color="primary" (click)="onSave()" [disabled]="form.invalid">Guardar</button>
     </div>
 </div>

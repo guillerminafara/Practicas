@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthorService } from '../author.service';
 import { MatDialog } from '@angular/material/dialog';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { Pageable } from 'src/app/core/model/page/Pageable';
 import { Author } from '../model/Author';
 import { AuthorEditComponent } from '../author-edit/author-edit.component';
@@ -23,8 +23,13 @@ export class AuthorListComponent implements OnInit {
   displayColumns: string[] = ['id', 'name', 'nationality', 'action'];
   constructor(private authorService: AuthorService,
     public dialog: MatDialog,
+    private paginator: MatPaginatorIntl
   ) {
-
+    this.paginator.itemsPerPageLabel = "Registros por página";
+    this.paginator.previousPageLabel= "Página anterior";
+    this.paginator.nextPageLabel= "Página siguiente";
+    this.paginator.firstPageLabel= "Primera página";
+    this.paginator.lastPageLabel= "Última página";
   }
   ngOnInit(): void {
     this.loadPage();
@@ -39,54 +44,56 @@ export class AuthorListComponent implements OnInit {
         direction: 'ASC'
       }]
     }
-    if(event !=null){
-      pageable.pageSize= event.pageSize
-      pageable.pageNumber= event.pageIndex;
+    if (event != null) {
+      pageable.pageSize = event.pageSize
+      pageable.pageNumber = event.pageIndex;
     }
-    this.authorService.getAuthors(pageable).subscribe(data =>{
-      this.dataSource.data= data.content;
-      this.pageNumber= data.pageable.pageNumber;
-      this.pageSize=data.pageable.pageSize;
-      this.totalElements= data.totalElements;
+    this.authorService.getAuthors(pageable).subscribe(data => {
+      this.dataSource.data = data.content;
+      this.pageNumber = data.pageable.pageNumber;
+      this.pageSize = data.pageable.pageSize;
+      this.totalElements = data.totalElements;
     });
   }
 
-  createAuthor() {      
+  createAuthor() {
     const dialogRef = this.dialog.open(AuthorEditComponent, {
-        data: {}
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        this.ngOnInit();
-    });      
-}  
+      this.ngOnInit();
+    });
+  }
 
-editAuthor(author: Author) {    
+  editAuthor(author: Author) {
     const dialogRef = this.dialog.open(
       AuthorEditComponent, {
-        data: { author: author }
+      data: { author: author }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        this.ngOnInit();
-    });    
-}
+      this.ngOnInit();
+    });
+  }
 
-deleteAuthor(author: Author) {    
+  deleteAuthor(author: Author) {
     const dialogRef = this.dialog.open(
       DialogConfirmationComponent, {
-        data: { title: "Eliminar autor",
-           description: "Atención si borra el autor se perderán sus datos.<br> ¿Desea eliminar el autor?" }
+      data: {
+        title: "Eliminar autor",
+        description: "Atención si borra el autor se perderán sus datos.<br> ¿Desea eliminar el autor?"
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-            this.authorService.deleteAuthor(author.id).subscribe(result =>  {
-                this.ngOnInit();
-            }); 
-        }
+      if (result) {
+        this.authorService.deleteAuthor(author.id).subscribe(result => {
+          this.ngOnInit();
+        });
+      }
     });
-}
+  }
 
 
 }
