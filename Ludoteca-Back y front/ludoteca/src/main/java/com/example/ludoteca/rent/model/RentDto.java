@@ -3,7 +3,6 @@ package com.example.ludoteca.rent.model;
 import com.example.ludoteca.customer.model.CustomerDto;
 import com.example.ludoteca.game.model.GameDto;
 
-
 import java.time.LocalDate;
 
 public class RentDto {

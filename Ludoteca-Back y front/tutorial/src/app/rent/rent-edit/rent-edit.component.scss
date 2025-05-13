@@ -2,9 +2,10 @@
     min-width: 500px;
     max-width: 700px;
 
-    h1{
+    h1 {
         margin-top: 10px;
     }
+
     form {
         display: flex;
         flex-direction: column;
@@ -17,11 +18,9 @@
 
     input {
         padding: 5px;
-
     }
 
     mat-select {
-        // background-color: #f5f5f5;
         padding: 5px;
     }
 
@@ -40,8 +39,7 @@
         flex-direction: row;
 
         .left {
-            margin-right:10px
+            margin-right: 10px
         }
     }
-
 }

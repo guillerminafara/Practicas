@@ -1,7 +1,7 @@
 import { SortPage } from "./SortPage";
 
-export class Pageable{
+export class Pageable {
     pageNumber: number;
-    pageSize:number;
+    pageSize: number;
     sort: SortPage[]
 }

@@ -16,11 +16,11 @@ import { positiveIntegerValidator } from 'src/app/validators/positive-integer-va
   styleUrls: ['./game-edit.component.scss']
 })
 export class GameEditComponent implements OnInit {
-
   game: Game;
   authors: Author[];
   categories: Category[];
   form: FormGroup;
+
   constructor(
     public dialogRef: MatDialogRef<GameEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -29,25 +29,21 @@ export class GameEditComponent implements OnInit {
     private authorService: AuthorService,
     private fb: FormBuilder
   ) {
-
     this.form = this.fb.group({
       id: [{ value: '', disabled: true }],
       titleGame: ['', [Validators.required, spaceValidator]],
       agaRange: ['', [Validators.required, positiveIntegerValidator]],
       category: ['', [Validators.required]],
       author: ['', [Validators.required]]
-
     })
   }
+
   ngOnInit(): void {
     if (this.data.game != null) {
       this.game = Object.assign({}, this.data.game);
-    }
-    else {
+    } else {
       this.game = new Game();
     }
-
-
     this.categoryService.getCategories().subscribe(
       categories => {
         this.categories = categories;
@@ -82,7 +78,4 @@ export class GameEditComponent implements OnInit {
   onClose() {
     this.dialogRef.close();
   }
-
-
-
 }

@@ -14,7 +14,7 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { RentEditComponent } from './rent-edit/rent-edit.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -38,8 +38,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatNativeDateModule,
     MatDatepickerModule,
     MatButtonModule,
-   MatSnackBarModule 
-   
+    MatSnackBarModule
   ]
 })
 export class RentModule { }

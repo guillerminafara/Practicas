@@ -11,10 +11,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatOptionModule} from '@angular/material/core';
+import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
-
+import { GameRoutingModule } from './game-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { MatCardModule } from '@angular/material/card';
   imports: [
     CommonModule,
     MatTableModule,
-    MatIconModule, 
+    MatIconModule,
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
@@ -36,6 +36,7 @@ import { MatCardModule } from '@angular/material/card';
     MatOptionModule,
     MatSelectModule,
     MatCardModule,
+    GameRoutingModule
   ]
 })
 export class GameModule { }

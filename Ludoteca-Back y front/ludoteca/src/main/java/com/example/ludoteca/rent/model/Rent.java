@@ -1,12 +1,10 @@
 package com.example.ludoteca.rent.model;
 
-
 import com.example.ludoteca.customer.model.Customer;
 import com.example.ludoteca.game.model.Game;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-
 
 @Entity
 @Table(name = "rent")
@@ -17,7 +15,7 @@ public class Rent {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="customer_id", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
     @ManyToOne

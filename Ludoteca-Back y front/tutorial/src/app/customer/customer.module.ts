@@ -10,8 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { CustomerRoutingModule } from './customer-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,19 +19,22 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     CommonModule,
-        MatTableModule,
-        MatIconModule, 
-        MatButtonModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatInputModule, 
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    CustomerRoutingModule
   ],
-    providers: [
-     { provide:MAT_DIALOG_DATA,
-      useValue: {},}
-    ]
+  providers: [
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {},
+    }
+  ]
 })
 export class CustomerModule { }

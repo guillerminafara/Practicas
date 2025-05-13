@@ -8,7 +8,6 @@ import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confir
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 
-
 @NgModule({
   declarations: [
     HeaderComponent,

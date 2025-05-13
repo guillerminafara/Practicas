@@ -6,7 +6,6 @@ public class RentSearchDto {
     private PageableRequest pageable;
 
     public PageableRequest getPageable() {
-
         return pageable;
     }
 

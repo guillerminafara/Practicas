@@ -1,6 +1,5 @@
 package com.example.ludoteca.game;
 
-
 import com.example.ludoteca.game.model.Game;
 import com.example.ludoteca.game.model.GameDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,13 +26,14 @@ public class GameController {
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<GameDto> find(@RequestParam(value = "title", required = false) String title,
                               @RequestParam(value = "idCategory", required = false) Long idCategory) {
-        List<Game> games= gameService.find(title, idCategory);
-        return games.stream().map(e-> mapper.map(e, GameDto.class)).collect(Collectors.toList());
+        List<Game> games = gameService.find(title, idCategory);
+        return games.stream().map(e -> mapper.map(e, GameDto.class)).collect(Collectors.toList());
     }
 
     @Operation(summary = "Save or Update", description = "Method that saves or updates a Game")
     @RequestMapping(path = {"", "/{id}"}, method = RequestMethod.PUT)
-    public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody GameDto dto) {
-        gameService.save(id,dto);
+    public void save(@PathVariable(name = "id", required = false) Long id,
+                     @RequestBody GameDto dto) {
+        gameService.save(id, dto);
     }
 }

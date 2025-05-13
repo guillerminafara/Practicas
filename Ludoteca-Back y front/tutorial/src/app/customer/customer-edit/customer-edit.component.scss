@@ -2,19 +2,21 @@
   min-width: 350px;
   max-width: 500px;
   padding: 20px;
-  p{
-    color:red;
+
+  p {
+    color: red;
   }
 
   form {
     display: flex;
     flex-direction: column;
-       margin-bottom:20px;
+    margin-bottom: 20px;
   }
 
-    button {
-        margin-left: 10px;
-    }
+  button {
+    margin-left: 10px;
+  }
+
   .buttons {
     text-align: right;
   }

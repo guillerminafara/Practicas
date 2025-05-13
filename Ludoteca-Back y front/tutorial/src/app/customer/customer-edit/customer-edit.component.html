@@ -5,16 +5,18 @@
     <form [formGroup]="form">
         <mat-form-field>
             <mat-label>Identificador</mat-label>
-            <input type="text" matInput placeholder="Identificador" [(ngModel)]="customer.id" name="id" formControlName="id">
+            <input type="text" matInput placeholder="Identificador" [(ngModel)]="customer.id" name="id"
+                formControlName="id">
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Nombre</mat-label>
-            <input type="text" matInput placeholder="Nombre del cliente" [(ngModel)]="customer.name"name="name" formControlName="name" >
+            <input type="text" matInput placeholder="Nombre del cliente" [(ngModel)]="customer.name" name="name"
+                formControlName="name">
             <mat-error>El nombre no puede estar vacío</mat-error>
-           
+
         </mat-form-field>
-        <p color= $tutorial-warn *ngIf="errorB" class="errorRepeat" > {{errorText}}</p>
+        <p color=$tutorial-warn *ngIf="errorB" class="errorRepeat"> {{errorText}}</p>
     </form>
 
     <div class="buttons">

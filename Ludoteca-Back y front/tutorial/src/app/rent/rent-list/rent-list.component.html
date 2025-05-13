@@ -6,17 +6,14 @@
             <mat-select [(ngModel)]="filterGame" name="game">
                 <mat-option *ngFor="let game of games" [value]="game">
                     {{game.title}}
-                    <!-- <mat-option *ngFor="let item of items"> -->
-                    <!-- <mat-icon>{{item.icon}}</mat-icon> -->
                 </mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Cliente...</mat-label>
-            <mat-select [(ngModel)]="filterCustomer"  name="cust">
+            <mat-select [(ngModel)]="filterCustomer" name="cust">
                 <mat-option *ngFor="let cust of customer" [value]="cust">
                     {{cust.name}}
-                    <!-- <mat-icon>{{item.icon}}</mat-icon> -->
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -31,12 +28,7 @@
         <button mat-raised-button class="buttons2" (click)="onCleanFilter()">Limpiar</button>
 
         <button mat-raised-button class="buttons2" (click)="onSearch()">Filtrar</button>
-
-
-
     </form>
-
-
 
     <mat-table [dataSource]="dataSource" class="tablee">
         <ng-container matColumnDef="id">
@@ -84,5 +76,4 @@
     <div class="buttons">
         <button mat-flat-button color="primary" (click)="createRent()">Nuevo alquiler</button>
     </div>
-
 </div>

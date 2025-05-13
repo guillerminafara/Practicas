@@ -13,15 +13,15 @@ import { spaceValidator } from 'src/app/validators/space-validator';
 export class CustomerEditComponent implements OnInit {
   customer: Customer;
   errorText: String;
-  errorB:Boolean;
-   form: FormGroup
+  errorB: Boolean;
+  form: FormGroup
   constructor(
     public dialogRef: MatDialogRef<CustomerEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private customerService: CustomerService,
-      private fb: FormBuilder
+    private fb: FormBuilder
   ) {
- this.form = this.fb.group({
+    this.form = this.fb.group({
       id: [{ value: '', disabled: true }],
       name: ['', [Validators.required, spaceValidator]]
     })
@@ -37,27 +37,18 @@ export class CustomerEditComponent implements OnInit {
   }
 
   onSave() {
-    this.customerService.saveCustomer(this.customer).subscribe(result => {
-      this.dialogRef.close();
-    },
-
-      err => {
-       // console.log("aqui","Error::::"+err.status);
+    this.customerService.saveCustomer(this.customer).subscribe({
+      next: () => {
+        this.dialogRef.close();
+      },
+      error: (err) => {
         if (err.status === 400) {
-          this.errorB=true;
+          this.errorB = true;
           this.errorText = "Cliente repetido";
         }
       }
-
-    );
-
+    })
   }
-
-  // checkRepeatName(){
-  //   this.customerService.getCustomer().subscribe(result=> {
-
-  //   })
-  // }
 
   onClose() {
     this.dialogRef.close();

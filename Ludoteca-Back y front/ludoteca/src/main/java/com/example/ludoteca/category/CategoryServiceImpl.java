@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 @Transactional
 public class CategoryServiceImpl implements CategoryService {
-
     @Autowired
     CategoryRepository categoryRepository;
 
@@ -32,7 +32,6 @@ public class CategoryServiceImpl implements CategoryService {
         } else {
             category = this.get(id);
         }
-        category.setName(dto.getName());
         this.categoryRepository.save(category);
     }
 
@@ -40,7 +39,6 @@ public class CategoryServiceImpl implements CategoryService {
     public void delete(Long id) throws Exception {
         if (this.get(id) == null) {
             throw new Exception("Not exist");
-
         }
         this.categoryRepository.deleteById(id);
     }

@@ -3,13 +3,8 @@ import { Game } from "src/app/game/model/Game";
 
 export class Rent {
     id: number;
-    // nameGame:string;
-    // nameCustomer:string
     game: Game;
     customer: Customer;
     initialDate: String;
     endDate: String;
- 
-
-    
 }

@@ -5,7 +5,7 @@ import { CustomerService } from 'src/app/customer/customer.service';
 import { Game } from 'src/app/game/model/Game';
 import { Customer } from 'src/app/customer/model/Customer';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Rent } from '../model/rent';
+import { Rent } from '../model/Rent';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { spaceValidator } from 'src/app/validators/space-validator';
@@ -31,8 +31,9 @@ export class RentEditComponent implements OnInit {
   errorB: Boolean;
   errorText: string;
   minDate = new Date();
-  minDateEnd= new Date();
+  minDateEnd = new Date();
   form: FormGroup
+
   constructor(
     private rentService: RentService,
     private gameService: GameService,
@@ -53,17 +54,15 @@ export class RentEditComponent implements OnInit {
       const endDateControl = this.form.get('endDate');
       const endDAte = endDateControl?.value;
       if (f) {
-         this.minDateEnd = f;
+        this.minDateEnd = f;
         if (endDAte && endDAte < f) {
-          // this.form.get('endDate').setValue(null);
           endDateControl?.setValue(null);
         }
         endDateControl?.updateValueAndValidity();
       }
 
     });
-     this.minDate = new Date();
-    // this.form.get('endDate')?.setValidators(this.onInitEndDateValidator.bind(this));
+    this.minDate = new Date();
 
   }
   ngOnInit(): void {
@@ -72,7 +71,6 @@ export class RentEditComponent implements OnInit {
     } else {
       this.rent = new Rent();
     }
-
     this.gameService.getGames().subscribe(
       games => {
         this.games = games
@@ -87,7 +85,6 @@ export class RentEditComponent implements OnInit {
 
       }
     );
-
     this.customerService.getCustomer().subscribe(
       customers => {
         this.customers = customers
@@ -104,7 +101,6 @@ export class RentEditComponent implements OnInit {
     )
   }
 
-
   onInitEndDateValidator(control: AbstractControl) {
     const initialDate = this.form?.get('initialDate')?.value;
     if (initialDate && control.value < initialDate) {
@@ -114,15 +110,10 @@ export class RentEditComponent implements OnInit {
   }
 
   onSave() {
-    console.log("--->", !this.rent.customer, !this.rent.initialDate, !this.rent.endDate)
-    //if (!this.rent.customer || !this.rent.initialDate || !this.rent.endDate) {
     if (this.rent.customer != null || this.rent.initialDate != null || this.rent.endDate != null) {
-
       this.rent.initialDate = this.selectedInitialDay.toLocaleDateString('en-CA')
       this.rent.endDate = this.selectedEndDay.toLocaleDateString('en-CA')
       console.log(JSON.stringify(this.rent))
-
-
       this.rentService.SaveRent(this.rent).subscribe({
         next: () => {
           this.dialogRef.close();
@@ -148,7 +139,6 @@ export class RentEditComponent implements OnInit {
 
         }
       })
-
     }
   }
 

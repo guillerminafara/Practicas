@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AuthorRoutingModule } from './author-routing.module';
 
 
 
@@ -21,7 +22,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   imports: [
     CommonModule,
     MatTableModule,
-    MatIconModule, 
+    MatIconModule,
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
@@ -29,10 +30,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule,
     ReactiveFormsModule,
     MatPaginatorModule,
+    AuthorRoutingModule
   ],
-  providers:[{
-    provide:MAT_DIALOG_DATA,
-    useValue:{},
+  providers: [{
+    provide: MAT_DIALOG_DATA,
+    useValue: {},
   }]
 })
 export class AuthorModule { }

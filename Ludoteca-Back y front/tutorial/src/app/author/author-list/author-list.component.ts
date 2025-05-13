@@ -26,10 +26,10 @@ export class AuthorListComponent implements OnInit {
     private paginator: MatPaginatorIntl
   ) {
     this.paginator.itemsPerPageLabel = "Registros por página";
-    this.paginator.previousPageLabel= "Página anterior";
-    this.paginator.nextPageLabel= "Página siguiente";
-    this.paginator.firstPageLabel= "Primera página";
-    this.paginator.lastPageLabel= "Última página";
+    this.paginator.previousPageLabel = "Página anterior";
+    this.paginator.nextPageLabel = "Página siguiente";
+    this.paginator.firstPageLabel = "Primera página";
+    this.paginator.lastPageLabel = "Última página";
   }
   ngOnInit(): void {
     this.loadPage();
@@ -94,6 +94,4 @@ export class AuthorListComponent implements OnInit {
       }
     });
   }
-
-
 }

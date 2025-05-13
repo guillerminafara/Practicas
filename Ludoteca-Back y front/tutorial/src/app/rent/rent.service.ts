@@ -1,32 +1,22 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Pageable } from '../core/model/page/Pageable';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { RentPage } from './model/RentPage';
-import { Rent } from './model/rent';
-// import { RENT_DATA } from './model/mock-rent';
+import { Rent } from './model/Rent';
 
+let url = 'http://localhost:8080/rent';
 @Injectable({
   providedIn: 'root'
 })
 export class RentService {
-
-
-  private url = 'http://localhost:8080/rent';
   constructor(private http: HttpClient) { }
-
-  // getRents(request:any): Observable<RentPage> {
-  //   return this.http.post<RentPage>( ,this.composeFindUrl(customerId, gameId));
-  // }
-
   getRents(pageable: Pageable, customerId: number, gameId: number, dateSelectedDay: string): Observable<RentPage> {
     return this.http.post<RentPage>(this.composeFindUrl(customerId, gameId, dateSelectedDay), { pageable: pageable });
   }
 
   private composeFindUrl(customerId: number, gameId: number, dateSelectedDay): string {
     let param = new URLSearchParams();
-  
     if (customerId != null) {
       param.append('customerId', customerId.toString());
     }
@@ -39,20 +29,15 @@ export class RentService {
     } else {
       console.log("comprobaciones de nuoll", param);
     }
-    // }
-
     const queryString = param.toString();
-
-    return  queryString ? `${this.url}?${queryString}` :this.url;
+    return queryString ? `${url}?${queryString}` : url;
   }
 
   SaveRent(rent: Rent): Observable<Rent> {
- 
-    return this.http.put<Rent>(this.url, rent);
+    return this.http.put<Rent>(url, rent);
   }
 
   deleteRent(idRent: number): Observable<void> {
-    return this.http.delete<void>('http://localhost:8080/rent/' + idRent);
+    return this.http.delete<void>(url + '/' + idRent);
   }
-
 }

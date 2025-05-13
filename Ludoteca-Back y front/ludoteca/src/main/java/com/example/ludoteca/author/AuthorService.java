@@ -9,8 +9,12 @@ import java.util.List;
 
 public interface AuthorService {
     Page<Author> findPage(AuthorSearchDto dto);
+
     Author get(Long id);
+
     List<Author> findAll();
+
     void save(Long id, AuthorDto dto);
+
     void delete(Long id) throws Exception;
 }

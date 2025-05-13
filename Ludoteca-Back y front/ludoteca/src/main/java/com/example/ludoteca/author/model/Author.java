@@ -3,17 +3,17 @@ package com.example.ludoteca.author.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="author")
+@Table(name = "author")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "id", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name="name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name="nationality")
+    @Column(name = "nationality")
     private String nationality;
 
     public Long getId() {

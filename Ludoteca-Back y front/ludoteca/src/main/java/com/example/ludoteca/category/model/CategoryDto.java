@@ -1,7 +1,10 @@
 package com.example.ludoteca.category.model;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class CategoryDto {
     private Long id;
+    @NotBlank(message= "Nombre de categoría vacía")
     private String name;
 
     public Long getId() {

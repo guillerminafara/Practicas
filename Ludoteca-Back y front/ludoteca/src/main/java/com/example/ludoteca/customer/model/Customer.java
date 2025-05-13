@@ -3,13 +3,13 @@ package com.example.ludoteca.customer.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="customer")
+@Table(name = "customer")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
-    @Column(name="name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     public Long getId() {

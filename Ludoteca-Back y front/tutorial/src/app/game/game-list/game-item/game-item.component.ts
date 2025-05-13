@@ -6,11 +6,9 @@ import { Game } from '../../model/Game';
   templateUrl: './game-item.component.html',
   styleUrls: ['./game-item.component.scss']
 })
-export class GameItemComponent implements OnInit{
+export class GameItemComponent implements OnInit {
   @Input() game: Game;
   constructor() { }
   ngOnInit(): void {
-   
   }
-
 }

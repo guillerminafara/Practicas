@@ -7,8 +7,9 @@
         mat-form-field {
             width: 300px;
             margin-right: 20px;
-            mat-option{
-                padding:5px;
+
+            mat-option {
+                padding: 5px;
             }
         }
 
@@ -22,13 +23,13 @@
         }
     }
 
-    .game-list { 
+    .game-list {
         margin-top: 20px;
         margin-bottom: 20px;
 
         display: flex;
         flex-flow: wrap;
-        overflow: auto;  
+        overflow: auto;
     }
 
     .buttons {

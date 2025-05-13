@@ -7,17 +7,30 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { RentListComponent } from './rent/rent-list/rent-list.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/games', pathMatch: 'full'},
-  {path: 'categories', component: CategoryListComponent },
-  {path: 'customer', component: CustomerListComponent},
-  {path: 'authors', component: AuthorListComponent},
-  { path: 'games', component: GameListComponent },
+  {
+    path: '',
+    redirectTo: '/games', pathMatch: 'full'
+  },
+  {
+    path: 'categories',
+    loadChildren: () => import('./category/category-routing.module').then(m => m.CategoryRoutingModule)
+  },
+  {
+    path: 'customer',
+    loadChildren: () => import('./customer/customer-routing.module').then(m => m.CustomerRoutingModule)
+  },
+  {
+    path: 'authors',
+    loadChildren: () => import('./author/author-routing.module').then(m => m.AuthorRoutingModule)
+  },
+  {
+    path: 'games',
+    loadChildren: () => import('./game/game-routing.module').then(m => m.GameRoutingModule)
+  },
   { path: 'rent', component: RentListComponent },
-
 ];
 
 @NgModule({
-  
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

@@ -3,6 +3,7 @@ package com.example.ludoteca.game.model;
 import com.example.ludoteca.author.model.Author;
 import com.example.ludoteca.category.model.Category;
 import jakarta.persistence.*;
+
 @Entity
 @Table(name = "game")
 public class Game {

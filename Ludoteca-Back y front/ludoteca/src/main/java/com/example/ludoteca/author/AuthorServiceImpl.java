@@ -3,7 +3,6 @@ package com.example.ludoteca.author;
 import com.example.ludoteca.author.model.Author;
 import com.example.ludoteca.author.model.AuthorDto;
 import com.example.ludoteca.author.model.AuthorSearchDto;
-
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +21,12 @@ public class AuthorServiceImpl implements AuthorService {
     public Page<Author> findPage(AuthorSearchDto dto) {
         return this.authorRepository.findAll(dto.getPageable().getPageable());
     }
+
     @Override
     public List<Author> findAll() {
-
         return (List<Author>) this.authorRepository.findAll();
     }
+
     @Override
     public Author get(Long id) {
         return this.authorRepository.findById(id).orElse(null);
@@ -46,9 +46,8 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public void delete(Long id) throws Exception {
-        if (this.get(id)== null) {
+        if (this.get(id) == null) {
             throw new Exception("Not Exists");
-
         }
         this.authorRepository.deleteById(id);
     }

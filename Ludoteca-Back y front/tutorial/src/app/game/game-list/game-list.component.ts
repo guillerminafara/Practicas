@@ -12,14 +12,15 @@ import { GameEditComponent } from '../game-edit/game-edit.component';
   styleUrls: ['./game-list.component.scss']
 })
 export class GameListComponent implements OnInit {
-
   categories: Category[];
   games: Game[];
   filterCategory: Category;
   filterTitle: string;
+
   constructor(private gameService: GameService,
     private categoryService: CategoryService,
     public dialog: MatDialog) { }
+
   ngOnInit(): void {
     this.gameService.getGames().subscribe(
       games => this.games = games
@@ -51,6 +52,7 @@ export class GameListComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
   editGame(game: Game) {
     const dialogRef = this.dialog.open(GameEditComponent, {
       data: { game: game }
@@ -60,8 +62,5 @@ export class GameListComponent implements OnInit {
       this.onSearch();
     });
   }
-
-
-
 }
 

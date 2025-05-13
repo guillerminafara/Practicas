@@ -17,41 +17,41 @@ export class CustomerListComponent implements OnInit {
 
   constructor(
     private customerService: CustomerService,
-    public dialog:MatDialog
+    public dialog: MatDialog
   ) { }
   ngOnInit(): void {
     this.customerService.getCustomer().subscribe(customer => this.dataSource.data = customer);
   }
 
-  createCustomer(){
-    const dialogRef= this.dialog.open(CustomerEditComponent, {
-      data:{}
+  createCustomer() {
+    const dialogRef = this.dialog.open(CustomerEditComponent, {
+      data: {}
     });
-    dialogRef.afterClosed().subscribe(result =>{
+    dialogRef.afterClosed().subscribe(result => {
       this.ngOnInit();
     });
   }
 
+  editCustomer(customer: Customer) {
+    const dialogRef = this.dialog.open(CustomerEditComponent, {
+      data: { customer: customer }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
+  }
+  
+  deleteCustomer(customer: Customer) {
+    const dialogRef = this.dialog.open(DialogConfirmationComponent, {
+      data: { title: "Eliminar cliente", description: "Atención si borra el cliente se perderán sus datos.<br> ¿Desea eliminar el cliente?" }
+    });
 
-editCustomer(customer:Customer){
-  const dialogRef= this.dialog.open(CustomerEditComponent,{
-    data:{customer:customer}
-  });
-  dialogRef.afterClosed().subscribe(result=>{
-    this.ngOnInit();
-  });
-}  
-deleteCustomer(customer: Customer) {    
-  const dialogRef = this.dialog.open(DialogConfirmationComponent, {
-    data: { title: "Eliminar cliente", description: "Atención si borra el cliente se perderán sus datos.<br> ¿Desea eliminar el cliente?" }
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-      this.customerService.deleteCustomer(customer.id).subscribe(result => {
-        this.ngOnInit();
-      }); 
-    }
-  });
-}
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.customerService.deleteCustomer(customer.id).subscribe(result => {
+          this.ngOnInit();
+        });
+      }
+    });
+  }
 }

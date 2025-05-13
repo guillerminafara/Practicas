@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
 @Service
 @Transactional
 public class CustomerServiceImpl implements CustomerService {
@@ -21,19 +22,17 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void save(Long id, CustomerDto dto) throws Exception{
+    public void save(Long id, CustomerDto dto) throws Exception {
         Customer customer;
-        if(customerRepository.findByName(dto.getName())==null){
+        if (customerRepository.findByName(dto.getName()) == null) {
             if (id == null) {
                 customer = new Customer();
             } else {
                 customer = this.get(id);
             }
-        }else{
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cliente repetido");
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cliente repetido");
         }
-
-
         customer.setName(dto.getName());
         this.customerRepository.save(customer);
     }
@@ -47,7 +46,6 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     /**
-     *
      * @param id
      * @return a Customer
      */

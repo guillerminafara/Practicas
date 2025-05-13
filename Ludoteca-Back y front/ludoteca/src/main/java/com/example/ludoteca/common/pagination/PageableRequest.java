@@ -1,9 +1,11 @@
 package com.example.ludoteca.common.pagination;
+
 import java.io.Serial;
 import java.util.List;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.domain.*;
 
@@ -23,14 +25,12 @@ public class PageableRequest implements Serializable {
     }
 
     public PageableRequest(int pageNumber, int pageSize) {
-
         this();
         this.pageNumber = pageNumber;
         this.pageSize = pageSize;
     }
 
     public PageableRequest(int pageNumber, int pageSize, List<SortRequest> sort) {
-
         this();
         this.pageNumber = pageNumber;
         this.pageSize = pageSize;
@@ -63,12 +63,11 @@ public class PageableRequest implements Serializable {
 
     @JsonIgnore
     public Pageable getPageable() {
-
         return PageRequest.of(this.pageNumber, this.pageSize, Sort.by(sort.stream().map(e -> new Sort.Order(e.getDirection(), e.getProperty())).collect(Collectors.toList())));
     }
 
     public static class SortRequest implements Serializable {
-    @Serial
+        @Serial
         private static final long serialVersionUID = 1L;
 
         private String property;

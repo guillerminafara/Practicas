@@ -18,12 +18,13 @@ export class AuthorEditComponent implements OnInit {
     private authorService: AuthorService,
     private fb: FormBuilder
   ) {
-  this.form = this.fb.group({
-        idTF: [{ value: '', disabled: true }],
-        authorTF: ['', [Validators.required, spaceValidator]],
-        nationalityTF: ['', [Validators.required, spaceValidator]],
-      })
+    this.form = this.fb.group({
+      idTF: [{ value: '', disabled: true }],
+      authorTF: ['', [Validators.required, spaceValidator]],
+      nationalityTF: ['', [Validators.required, spaceValidator]],
+    })
   }
+
   ngOnInit(): void {
     if (this.data.author != null) {
       this.author = Object.assign({}, this.data.author);
@@ -33,15 +34,12 @@ export class AuthorEditComponent implements OnInit {
   }
 
   onSave() {
-
-    this.authorService.SaveAuthor(this.author).subscribe(result => {
+    this.authorService.saveAuthor(this.author).subscribe(result => {
       this.dialogRef.close();
     })
-
-
   }
+
   onClose() {
     this.dialogRef.close();
   }
-
 }

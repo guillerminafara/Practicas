@@ -5,13 +5,9 @@ import com.example.ludoteca.category.model.CategoryDto;
 
 public class GameDto {
     private Long id;
-
     private String title;
-
     private String age;
-
     private CategoryDto category;
-
     private AuthorDto author;
 
     public Long getId() {

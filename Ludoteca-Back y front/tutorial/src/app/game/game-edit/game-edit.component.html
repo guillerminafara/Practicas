@@ -5,23 +5,22 @@
     <form [formGroup]="form">
         <mat-form-field>
             <mat-label>Identificador</mat-label>
-            <input type="text" matInput placeholder="Identificador" [(ngModel)]="game.id" name="id" formControlName="id">
+            <input type="text" matInput placeholder="Identificador" [(ngModel)]="game.id" name="id"
+                formControlName="id">
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Título</mat-label>
-            <input type="text" matInput placeholder="Título del juego" [(ngModel)]="game.title" name="title"  formControlName="titleGame" >
+            <input type="text" matInput placeholder="Título del juego" [(ngModel)]="game.title" name="title"
+                formControlName="titleGame">
             <mat-error>El título no puede estar vacío</mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Edad recomendada</mat-label>
-            <input type="number" matInput placeholder="Edad recomendada" 
-            [(ngModel)]="game.age" name="age" required min="0" formControlName="agaRange">
-              <mat-error >Ingresa un número válido
-              
-            </mat-error>
-
+            <input type="number" matInput placeholder="Edad recomendada" [(ngModel)]="game.age" name="age" required
+                min="0" formControlName="agaRange">
+            <mat-error>Ingresa un número válido</mat-error>
         </mat-form-field>
 
         <mat-form-field>
